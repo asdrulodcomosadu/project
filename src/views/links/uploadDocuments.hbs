@@ -1,0 +1,85 @@
+<div class="spinner" id="loader"></div>
+<section class="contenedorP sobre-nosotros">
+    <div class="card text-center">
+        <div class="card-header">
+            1 Paso
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Documentos</h5>
+            <form action="/files" method="post" enctype="multipart/form-data" onsubmit="return validar()">
+                <input type="file" name="licencia" id="licencia" accept="image/jpeg,image/jpg,image/png"
+                    multiple><br><br>
+                <input type="submit" value="Enviar" class="btn btn-primary btn-lg text-white">
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+            Estas más cerca
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m5">
+            <div class="card-panel blue darken-3">
+                <span class="white-text">Debe subir 4 fotos claras de los siguientes Documentos. Con el numero de tu
+                    documentode identidad seguido con el nombre del documento.
+                    <br>
+                    1- Licencia de conducción xxxxxxxxxxLicencia
+                    <br>
+                    2- Soat xxxxxxxxxxSoat
+                    <br>
+                    3- Antecendentes xxxxxxxxxxAntecedentes
+                    <br>
+                    4- Foto del vehiculo que se observe claramente su placa xxxxxxxxxxVehiculo
+                    <br>
+                    Si haces el registro y tus fotos no tienen las indicaciones anteriormente explicadas, no se le proporcionara permiso
+                    de prestar el servicio con Comodify.
+                </span>
+            </div>
+        </div>
+    </div>
+
+</section>
+<div class="botons">
+    <div class="fixed-action-btn toolbar">
+        <a class="btn-floating btn-large black">
+            <i class="large fa fa-plus"></i>
+        </a>
+        <ul>
+            <li><a class="btn-floating" href="javascript: history.go(-1)"><i class="fas fa-arrow-left"></i></a></li>
+            <li><a class="btn-floating" href="/links/profiles"><i class="fa fa-address-book"></i></a></li>
+            <li><a class="btn-floating" href="/links/routes"><i class="fa fa-route"></i></a></li>
+            <li><a class="btn-floating" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            toolbarEnabled: true
+        });
+    });
+    function validar() {
+        var documents = $("#licencia")[0].files.length;
+        if (documents === 0) {
+            swal.fire({
+                title: "Documentos",
+                text: "No tienes ningun archivo seleccionado",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        } else if (documents <= 3 || documents >= 5) {
+            swal.fire({
+                title: "Documentos",
+                text: "Debes elegir solo 4 fotos",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        } else {
+            document.getElementById("loader").style.display = "block";
+        }
+    }
+
+</script>

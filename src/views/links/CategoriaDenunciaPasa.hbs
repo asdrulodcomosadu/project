@@ -1,0 +1,98 @@
+<div class="spinner" id="loader"></div>
+{{#each pasajero}}
+<section class="addViajeTitulo text-center">
+    <h4>¿Quieres poner una queja sobre {{nombre}}</h4>
+</section>
+<section class="addViaje">
+    <p>Tus datos no se le revelarán a esa persona a la que le reclamaste.</p>
+    <form action="/links/denunciaDefinitivaPasa/{{id}}" method="POST" class="formDenun">
+        <div class="card">
+            <div class="card-header">
+                Selecciona el porqué de tu reclamo
+            </div>
+            <div class="card-body">
+                <div class="form-group col-md-8">
+                    <label for="denuncias">Casos</label>
+                    <select id="denuncias" name="denuncias" class="form-control">
+                        <option value="" selected>Selecciona...</option>
+                        <option value="1">Irrespetuos@</option>
+                        <option value="1">@</option>
+                        
+                    </select>
+                </div>
+                <button type="submit" class="btn blue darken-3">Reclamar</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+{{else}}
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card">
+            <div class="card-image">
+                <img src="../img/background.jpg">
+                <span class="card-title">Conductor</span>
+                <a class="btn-floating halfway-fab waves-effect waves-light blue darken-4 seguir"
+                    href="uploadDocuments"><i class="fa fa-address-book"></i></a>
+            </div>
+            <div class="card-content">
+                <p>No tienes perfil de conductor para crear rutas compartidas.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
+<div class="botons">
+    <div class="fixed-action-btn toolbar">
+        <a class="btn-floating btn-large black">
+            <i class="large fa fa-plus"></i>
+        </a>
+        <ul>
+            <li><a class="btn-floating seguir" href="javascript: history.go(-1)"><i class="fas fa-arrow-left"></i></a>
+            </li>
+            <li><a class="btn-floating seguir" href="/links/profiles"><i class="fa fa-address-book"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/routes"><i class="fa fa-route"></i></a></li>
+            <li><a class="btn-floating seguir" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            toolbarEnabled: true
+        });
+    });
+
+    $('.formDenun').submit(function (e) {
+        e.preventDefault();
+        var denuncia;
+        denuncia = document.getElementById("denuncias").value;
+        if (denuncia === "") {
+            swal.fire({
+                title: "Error",
+                text: "Escoge tu caso",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        } else {
+            Swal.fire({
+                title: '¿Quieres Reclamar?',
+                text: "Al reclamarle, se te eliminara de tu lista de pasajeros",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonText: 'No, Cancelar',
+                confirmButtonText: 'Si, ¡Reclamar!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                    document.getElementById("loader").style.display = "block";
+                }
+            })
+        }
+    });
+</script>

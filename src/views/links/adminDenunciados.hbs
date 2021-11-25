@@ -1,0 +1,51 @@
+<div class="p-4">
+    <a href="/links/admin" class="text-white"><button type="button" class="btn red accent-4"><i
+                class="fas fa-arrow-left"></i></button></a>
+</div>
+<div class="m-2 p-2">
+    <table id="example" class="display">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>precio Pagar</th>
+                <th>Fecha denunciada</th>
+                <th>Denunciar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each denunciados}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{precioPagar}}</td>
+                <td>{{fechaCreacion}}</td>
+                <td>
+                     <form action="/links/enviarLiquidacionDenunciada/{{id}}" class="ActionForm">
+                        <button type="submit" class="btn  red darken-3">Autorizar</button>
+                    </form>     
+            </tr>
+            {{else}}
+            <h4>No hay denuncias, todo va bien</h4>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>
+<script>
+    $('.ActionForm').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Confirmación',
+            text: "¿ya cumplio los 3 días de multa?",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#c51162',
+            cancelButtonText: 'No ha cumplido',
+            confirmButtonText: 'Si, Cumplio',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+</script>

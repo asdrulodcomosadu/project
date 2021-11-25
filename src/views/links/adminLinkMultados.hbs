@@ -1,0 +1,40 @@
+<div class="jumbotron">
+    <h6 class="display-4">Ruta: {{liquidar.id}}</h6>
+    <p class="lead">El responsable de esta ruta es {{liquidar.nombre}} {{liquidar.apellido}}</p>
+
+    <p>Esta identificado con el numero {{liquidar.identificacion}}</p>
+    <p>Su telefono de contacto es {{liquidar.celular}}</p>
+
+    <p>Vive en {{liquidar.municipio}} {{liquidar.departamento}}</p>
+    <p>Su estado actual es {{liquidar.disponible}}</p>
+    <p>Su sumatoria de multas es {{liquidar.denuncias}}</p>
+    <form action="/links/liquidarMulta/{{liquidar.id}}" method="POST" onsubmit="return validar()">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Link cobro PayU</label>
+            <input type="text" class="form-control" id="multa" name="multa" aria-describedby="emailHelp"
+                placeholder="paga aqui el link del cobro de 50.000 pesos" value="{{liquidar.multa}}">
+
+            <small id="emailHelp" class="form-text text-muted">Obligatorio cobrar ruta</small>
+        </div>
+        <button type="submit" class="btn red darken-3">Liquidar</button>
+    </form>
+</div>
+<script>
+    function validar() {
+        //Aca aprendes. 
+        var multa = document.getElementById("multa").value;
+
+        if (multa === "") {
+            swal.fire({
+                title: "FALTAN",
+                text: "Pega el link de cobro",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }
+    }
+
+</script>
+
+ 

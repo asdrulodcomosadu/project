@@ -1,0 +1,128 @@
+<div class="spinner" id="loader"></div>
+
+<div class="container p-4">
+    <div class="row">
+        {{#each datesDriver}}
+        <div class="row">
+            <input class="mult" id="mult" value="{{denuncias}}">
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="../img/pass1.jpg">
+                        <span class="card-title">{{nombre}}</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light blue darken-4 seguir"
+                            href="/links/editDatesDriver/{{id}}"><i class="fas fa-pencil-alt"></i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>Vive en {{departamento}} - {{municipio}}</p>
+                        <p>Disponibilidad: {{disponible}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="/links/validationCreateRoute" class="btn btn-warning blue darken-4 seguir">Crear ruta</a><br><br>
+        <!-- Button trigger modal -->
+        <div class="row">
+        </div>
+        <button type="button" class="btn red darken-2" data-toggle="modal" data-target="#exampleModal">
+            Condiciones
+        </button>
+        <br><br>
+        <div class="row">
+            <a href="{{multa}}" class="btn red accent-4 btM" id="btnM">Multa</a><br><br>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Conductor</h5>
+                    </div>
+                    <div class="modal-body">
+                        <ol>
+                            <li>Debes cambiar los estados de ruta hasta finalizar tu viaje. Ya que este informa a tus
+                                pasajeros el desarrollo de todo el viaje.</li>
+                            <li>Debes ser responsable con los tiempos y respetuoso con los pasajeros que eligieron su
+                                ruta. Si no puede prestar el servicio cambie su estado a "HOY NO ESTOY DISPONIBLE" 30
+                                minutos antes de la hora pactada; si puede antes mejor.</li>
+                        </ol>
+                        Los pasajeros te pueden denunciar si eres irresponsable con el lugar de espera, la hora pactada
+                        los lugares de destino y el precio que registras.
+                        <br>
+                        Si pasa esto esa ruta que denunciaron queda detenida por 3 días y tus pasajeros quedan fuera de
+                        ella.
+                        No la puedes eliminar hasta que vuelva a habilitarse y llegues a tus 3.000 pesos de bonificación
+                        a Comodify.
+                        <br>
+                        Hay un limite de oportunidades para que mejores tu servicio, si has tenido varias denuncias
+                        quedaras multado dentro del sistema se te eliminaran todas las rutas que tengas y no podras
+                        prestar el servicio, ni crear mas rutas hasta que pagues tu multa de 50.000 pesos.
+                        <br>
+                        Si hay pasajeros que han sido víctimas de agresiones más peligrosas, se eliminaran todas las
+                        rutas y tú como conductor quedaras marcado dentro de la aplicación. No podrás prestar más el
+                        servicio hasta que la justicia diga que eres inocente y todo fue un error.
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn  red darken-2" data-dismiss="modal">Entendido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="../img/background.jpg">
+                        <span class="card-title">Conductor</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light blue darken-4 seguir"
+                            href="uploadDocuments"><i class="fa fa-address-book"></i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>No tienes perfil de conductor para crear rutas compartidas. <br>Presiona el botón <i class="fa fa-address-book"></i> para crearlo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+<div class="botons">
+    <div class="fixed-action-btn toolbar">
+        <a class="btn-floating btn-large black">
+            <i class="large fa fa-plus"></i>
+        </a>
+        <ul>
+            <li><a class="btn-floating seguir" href="/profile"><i class="fas fa-arrow-left"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/profiles"><i class="fa fa-address-book"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/routes"><i class="fa fa-route"></i></a></li>
+            <li><a class="btn-floating seguir" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            toolbarEnabled: true
+        });
+    });
+
+    $('.seguir').on("click", function () {
+        console.log("Hola")
+        document.getElementById("loader").style.display = "block";
+    });
+
+    window.onload = multa;
+    function multa() {
+        var pago = document.getElementById("mult").value;
+        console.log(pago)
+        if (pago >= 10 && pago < 50) {
+            document.getElementById("btnM").style.display = "block";
+        }
+    }
+</script>
