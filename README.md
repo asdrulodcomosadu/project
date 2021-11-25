@@ -1,6 +1,7 @@
 # Comodify
 
-Notes App is a Multi Page Application using Nodejs and Mysql. The purpose of this web application is just to be an example for beginners.
+La aplicación Comodify es un proyecto de movilidad que utiliza las tecnologias de nodejs y Mysql. El proposito de esta aplicación Movil es compartir rutas que conductores realicen y que quieran llevar personas con ellos.
+
 
 ![](docs/1.png)
 ![](docs/2.png)
@@ -12,7 +13,7 @@ Notes App is a Multi Page Application using Nodejs and Mysql. The purpose of thi
 ![](docs/8.png)
 
 
-### Installation
+### Instalación
 ```
 mysql -u MYUSR "-pMYPASSWORD" < ./database/db.sql # create database
 npm i
@@ -22,25 +23,19 @@ npm start
 
 ## File Structure
 
-- database, it the folder with all the sql queries, you can use to recreate the database for this application
-- src, it's all the code for the Backend and Frontend Application
-- docs
+- database, es la carpeta con todas las consultas SQL, puede usar para recrear la base de datos para esta aplicación
+- docs es la carpeta que tiene las imagenes mostradas en la parte inferior
+- src, es todo el código para la aplicación de backend y frontend
+- Uploads, es la carpeta donde se encuentran todos los documentos de los usuarios
 
-## Environment Variables
+## Variables de entorno
 
-- PORT
+- PORT: 4000
 
-## Old Versions of this Project
-
-- [version-2018](https://github.com/FaztTech/nodejs-mysql-links/tree/version-2018)
 
 ## Todo
 
-1. [x] Improve Links Routes
-1. [ ] Write Route Validation with Express Validator
-1. [ ] Add docker compose production build
-1. [ ] Allows users to signup with email and no username
-1. [ ] Add nodemailer for transactional emails
+1. [x] Logistica de movilidad
 
 ## Tools
 
@@ -49,6 +44,9 @@ npm start
 - Babel
 - Docker
 
-# Resources
+# Recursos
 
-- https://stackoverflow.com/questions/50093144/mysql-8-0-client-does-not-support-authentication-protocol-requested-by-server
+- LISTA
+
+
+
