@@ -8,18 +8,11 @@
     <form action="/links/denunciaDefinitivaPasa/{{id}}" method="POST" class="formDenun">
         <div class="card">
             <div class="card-header">
-                Selecciona el porqué de tu reclamo
+                Escribe tu caso. Se especificó.
             </div>
             <div class="card-body">
-                <div class="form-group col-md-8">
-                    <label for="denuncias">Casos</label>
-                    <select id="denuncias" name="denuncias" class="form-control">
-                        <option value="" selected>Selecciona...</option>
-                        <option value="1">Irrespetuos@</option>
-                        <option value="1">@</option>
-                        
-                    </select>
-                </div>
+               <textarea id="denuncias" name="denuncias" class="form-control" id="exampleFormControlTextarea1" rows="7" placeholder="Lugar, hora, nombre de la persona, situación"></textarea>
+            <br>
                 <button type="submit" class="btn blue darken-3">Reclamar</button>
             </div>
         </div>
