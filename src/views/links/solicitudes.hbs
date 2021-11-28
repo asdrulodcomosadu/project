@@ -24,7 +24,7 @@
                     <div class="row">
                         <div class="col">
                             <form action="/links/ViajeSelectNo/{{id}}">
-                                <button type="submit" class="btn red darken-4">negar</button>
+                                <button type="submit" class="btn red darken-4 seguir">negar</button>
                             </form>
                         </div>
                         <div class="col">
@@ -35,7 +35,7 @@
                                 <input name="idPasajero" class="solici" value="{{idPasajero}}">
                                 <input name="nombre" class="solici" value="{{nombre}}">
 
-                                <button type="submit" class="btn blue darken-3">Aceptar</button>
+                                <button type="submit" class="btn blue darken-3 seguir">Aceptar</button>
                             </form>
                         </div>
                     </div>
@@ -105,4 +105,8 @@
             document.getElementById("clasi").style.backgroundColor = '#c62828';
         }
     }
+    $('.seguir').on("click", function () {
+            console.log("Hola")
+            document.getElementById("loader").style.display = "block";
+        });
 </script>

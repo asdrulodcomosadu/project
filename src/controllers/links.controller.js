@@ -113,7 +113,9 @@ export const cobraMulta = async (req, res) => {
   const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
   if (admin.length > 0) {
     const { id } = req.params;
+    console.log(id)
     await pool.query("UPDATE conductores set disponible = 'Si', denuncias = 0, multa = '' WHERE id = ?", [id]);
+    await pool.query("DELETE FROM casosgravesconductores WHERE casosgravesconductores.idConductor = ?", [id]);
     req.flash("success", "El conductor " + id + " Fue cobrado");
     res.redirect("/links/multasCobrar");
   } else {
@@ -455,6 +457,31 @@ export const dRutaInactiva = async (req, res) => {
   res.redirect("/links/rutaInactivas");
 };
 
+//Rutas inactivas
+export const denunciasPasa = async (req, res) => {
+  const admi = req.user.id;
+  const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
+  if (admin.length > 0) {
+    const denunc = await pool.query("SELECT * FROM casosgravespasajeros");
+    res.render("links/adminCasosPasa", { denunc });
+  } else {
+    res.render("profile");
+  }
+};
+//Denuncias pasajeros
+export const denunCondu = async (req, res) => {
+  const admi = req.user.id;
+  const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
+  if (admin.length > 0) {
+    const denunP = await pool.query("SELECT * FROM casosgravesconductores");
+    res.render("links/adminCasosDriver", { denunP });
+  } else {
+    res.render("profile");
+  }
+};
+
+
+
 
 
 
@@ -548,7 +575,7 @@ export const addPassager = async (req, res) => {
     responsabilidad: resposability,
   };
   await pool.query('INSERT INTO pasajeros set ?', [newPassager]);
-  req.flash('success', 'Felicidades, has creado tu perfil como pasajero puedes buscar y usar rutas');
+  req.flash('success', 'Felicidades, has creado tu perfil como pasajer@ puedes buscar y usar rutas');
   res.redirect("datesProfilePassager");
 };
 // Edición de Pasajero
@@ -857,38 +884,39 @@ export const denunciViaje = async (req, res) => {
 export const denunciaDefinitiva = async (req, res) => {
   const { id } = req.params;
   const { denuncias } = req.body;
+  console.log("Esta es la denucnuas", denuncias)
+  console.log("Esta es ruta", id)
   const conductor = await pool.query("SELECT idConductor FROM ruta WHERE id = ?", [id]);
   const driver = Object.values(conductor[0])[0];
+  console.log(driver, "Conductor")
   const Benuncias = await pool.query("SELECT denuncias FROM conductores WHERE id = ?", [driver]);
   if (Benuncias.length <= 0) {
-    await pool.query("UPDATE conductores set denuncias = ? WHERE id = ?", [denuncias, driver]);
-  } else {
+    await pool.query("UPDATE conductores set denuncias = '1' WHERE id = ?", [driver]);
+  }else{
     const denun = Object.values(Benuncias[0])[0];
-    const denunciashechas = parseInt(denuncias)
-    const denunciasRegistradas = parseInt(denun)
-    const sum = denunciasRegistradas + denunciashechas;
+    console.log(denun," Estas son la denuncias")
+    const sum = denun + 1;
     await pool.query("UPDATE conductores set denuncias = ? WHERE id = ?", [sum, driver]);
   }
+  const nuevaDenciaC = {
+    denuncia: denuncias,
+    idConductor: driver
+  };
+  await pool.query('INSERT INTO casosgravesconductores set ?', [nuevaDenciaC]);
   const denuncia = "Detenida";
   await pool.query("UPDATE ruta set ocupacion = ? WHERE id = ?", [denuncia, id]);
   await pool.query("DELETE FROM viajes WHERE viajes.idruta = ?", [id]);
   const contD = await pool.query("SELECT denuncias FROM conductores WHERE id = ?", [driver]);
   var conD = Object.values(contD[0])[0];
-  if (conD >= 10 && conD < 50) {
+  console.log(conD)
+  if (conD >= 5) {
     const disp = "Multado"
     await pool.query("UPDATE conductores set disponible = ? WHERE id = ?", [disp, driver]);
-    //await pool.query("UPDATE ruta set ocupacion = ? WHERE idConductor = ?", [denuncia, driver]);
-    //await pool.query("UPDATE viajes set acciones = ? WHERE idRuta = ?", [denuncia, id]);
     await pool.query("DELETE FROM ruta WHERE idConductor = ?", [driver]);
-  } else if (conD >= 50) {
-    const disp = "procesado"
-    await pool.query("UPDATE conductores set disponible = ? WHERE id = ?", [disp, driver]);
-    await pool.query("DELETE FROM ruta WHERE idConductor = ?", [driver]);
-  } else {
-    console.log("Bien")
   }
   req.flash("success", "Has denunciado una ruta");
   res.redirect("/links/routesSelected");
+
 };
 //Validar si esta todo bien en crear rutas
 export const ValidationRenderRoutesSelected = async (req, res) => {
@@ -1032,7 +1060,7 @@ export const addSolicitud = async (req, res) => {
   var bloqueo = Object.values(denuncia[0])[0];
   if (bloqueo === 5) {
     req.flash("message", "Estas fuera de usar las rutas de Comodify, ya que tienes 5 faltas.");
-    res.redirect("/links/profile");
+    res.redirect("/profile");
   } else {
     const user = await pool.query("SELECT id FROM pasajeros WHERE idUser = ?", [userP]);
     var pasa = Object.values(user[0])[0];
@@ -1054,12 +1082,12 @@ export const addSolicitud = async (req, res) => {
         puntuacion: de,
       };
       await pool.query('INSERT INTO solicitudes set ?', [newLink]);
-      req.flash('success', 'Espera que te acepten en su viaje, vuelve a entrar antes de la fecha de tu ruta.');
-      res.redirect("/links/routesSelected");
+      req.flash('success', 'Espera que te acepten en su viaje, vuelve a entrar mas tarde.');
+      res.redirect("/links/solicitudesPas/"+pasa);
     }
     else {
       req.flash("message", "Ya has enviado dos solicitudes o estas en activ@ en 2 rutas");
-      res.redirect("/links/routesSelected");
+      res.redirect("/links/datesProfilePassager");
     }
   }
 };
@@ -1146,9 +1174,7 @@ export const denunciaDefinitivaPasa = async (req, res) => {
   const { id } = req.params;
   const { denuncias } = req.body;
   const DenunciasPasa = await pool.query("SELECT denuncias FROM pasajeros WHERE id = ?", [id]);
-  console.log(denuncias)
   var dns = Object.values(DenunciasPasa[0])[0];
-  console.log(dns)
   const nuevaDencia = {
     denuncia: denuncias,
     idPasajero: id

@@ -492,10 +492,18 @@ table th {
 }
 
 
+.campo {
+  position: relative;
+}
 
-
-
-
+.campo span {
+  position: absolute;
+  right: 10px;
+  top: 1.6vh;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 2px 10px;
+}
 
 
 

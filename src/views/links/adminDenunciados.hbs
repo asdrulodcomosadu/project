@@ -8,6 +8,7 @@
             <tr>
                 <th>id</th>
                 <th>precio Pagar</th>
+                <th>Conductor</th>
                 <th>Fecha denunciada</th>
                 <th>Denunciar</th>
             </tr>
@@ -17,11 +18,12 @@
             <tr>
                 <td>{{id}}</td>
                 <td>{{precioPagar}}</td>
+                <td>{{idConductor}}</td>
                 <td>{{fechaCreacion}}</td>
-                <td>
-                     <form action="/links/enviarLiquidacionDenunciada/{{id}}" class="ActionForm">
+                <td>  <form action="/links/enviarLiquidacionDenunciada/{{id}}" class="ActionForm">
                         <button type="submit" class="btn  red darken-3">Autorizar</button>
-                    </form>     
+                    </form> </td>
+                    
             </tr>
             {{else}}
             <h4>No hay denuncias, todo va bien</h4>

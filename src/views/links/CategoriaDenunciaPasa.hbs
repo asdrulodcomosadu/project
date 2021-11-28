@@ -11,7 +11,7 @@
                 Escribe tu caso. Se especificó.
             </div>
             <div class="card-body">
-               <textarea id="denuncias" name="denuncias" class="form-control" id="exampleFormControlTextarea1" rows="7" placeholder="Lugar, hora, nombre de la persona, situación"></textarea>
+               <textarea id="denuncias" name="denuncias" maxlength="100" class="form-control" id="exampleFormControlTextarea1" rows="7" placeholder="Lugar, hora, nombre de la persona, situación"></textarea>
             <br>
                 <button type="submit" class="btn blue darken-3">Reclamar</button>
             </div>
@@ -73,7 +73,7 @@
         } else {
             Swal.fire({
                 title: '¿Quieres Reclamar?',
-                text: "Al reclamarle, se te eliminara de tu lista de pasajeros",
+                text: "Le añadiras una falla a est@ usuari@",
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

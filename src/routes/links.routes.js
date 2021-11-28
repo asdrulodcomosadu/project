@@ -42,7 +42,8 @@ import {
   deleteRutasSolicitads,
   rutaInactivas,
   dRutaInactiva,
-  
+  denunciasPasa,
+  denunCondu,
   
 
   renderDatesProfileDriver,
@@ -174,6 +175,13 @@ router.get("/deleteRutasSolicitads/:id", deleteRutasSolicitads);
 router.get("/rutaInactivas", rutaInactivas);
 //Eliminar inactiva de largo plazo
 router.get("/dRutaInactiva/:id", dRutaInactiva)
+
+//Denuncias pasajeros
+router.get("/denunPasa", denunciasPasa);
+//Denuncias pasajeros
+router.get("/denunCondu", denunCondu);
+
+
 
 
 

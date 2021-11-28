@@ -16,6 +16,7 @@
                     <div class="card-content">
                         <p>Vive en {{departamento}} - {{municipio}}</p>
                         <p>Disponibilidad: {{disponible}}</p>
+                        <p>Denuncias: {{denuncias}}</p>
                     </div>
                 </div>
             </div>
@@ -120,8 +121,7 @@
     window.onload = multa;
     function multa() {
         var pago = document.getElementById("mult").value;
-        console.log(pago)
-        if (pago >= 10 && pago < 50) {
+        if (pago >= 5) {
             document.getElementById("btnM").style.display = "block";
         }
     }
