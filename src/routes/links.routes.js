@@ -9,11 +9,7 @@ import {
   renderPassagers,
   DeletePassagerAdmin,
   renderDrivers,
-  renderDriversMultad,
-  linkMultados,
   liquidarMulta,
-  multasCobrar,
-  cobraMulta,
 
   driverDisponibilidad,
   autorizoD,
@@ -42,8 +38,10 @@ import {
   deleteRutasSolicitads,
   rutaInactivas,
   dRutaInactiva,
-  denunciasPasa,
-  denunCondu,
+
+
+
+  
   
 
   renderDatesProfileDriver,
@@ -71,9 +69,7 @@ import {
   renderRoutes,
   renderRoutesSelected,
   renderPassager,
-  DeletePassager,
   deleteViaje,
-  denunciViaje,
   denunciaDefinitiva,
   ValidationRenderRoutesSelected,
   enCamino,
@@ -87,8 +83,11 @@ import {
   addNoTViaje,
   solicitudesPasajero,
   eliminarSol,
-  denunciPasa,
-  denunciaDefinitivaPasa,
+  caliPasa,
+  stairsPasa,
+  caliCondu,
+  stairsCondu
+
 
 } from "../controllers/links.controller";
 
@@ -110,16 +109,8 @@ router.get("/passagers", renderPassagers);
 router.get("/PassagerDelete/:id", DeletePassagerAdmin);
 //Conductores
 router.get("/drivers", renderDrivers);
-//Conductores Multados
-router.get("/adminDriversMulta", renderDriversMultad);
-//Vista para cobrar a multados
-router.get("/linkMultados/:id", linkMultados);
 //Liquidar link multa
 router.post("/liquidarMulta/:id", liquidarMulta);
-//Lista de liquidaciones multas
-router.get("/multasCobrar", multasCobrar);
-//Borrar multa
-router.get("/cobraMulta/:id", cobraMulta);
 
 
 //disponibilidad conductores
@@ -176,10 +167,6 @@ router.get("/rutaInactivas", rutaInactivas);
 //Eliminar inactiva de largo plazo
 router.get("/dRutaInactiva/:id", dRutaInactiva)
 
-//Denuncias pasajeros
-router.get("/denunPasa", denunciasPasa);
-//Denuncias pasajeros
-router.get("/denunCondu", denunCondu);
 
 
 
@@ -242,14 +229,8 @@ router.get("/routes", renderRoutes);
 router.get("/routesSelected", renderRoutesSelected);
 //Observar los pasajeros
 router.get("/pasajeros/:id", renderPassager);
-//Eliminar pasajero de un viaje
-router.get("/DeletePasajeros/:id", DeletePassager);
 //Eliminar ruta
 router.get("/DeleteTravel/:id", deleteViaje);
-//Vista para Denunciar ruta
-router.get("/reportTravel/:id", denunciViaje);
-//Vista para Denunciar ruta
-router.post("/denunciaDefinitiva/:id", denunciaDefinitiva);
 //Validar si esta todo bien en crear rutas
 router.get("/validationCreateRoute", ValidationRenderRoutesSelected);
 ////En camino haci el lugar de encuentro
@@ -275,11 +256,21 @@ router.get("/ViajeSelectNo/:id", addNoTViaje);
 router.get("/solicitudesPas/:id", solicitudesPasajero);
 //Eliminar solicitud
 router.get("/eliminarSol/:id", eliminarSol);
-//Vista para denuncia al pasajero
-router.get("/reportPasa/:id", denunciPasa);
 
-//Vista para Denunciar ruta
-router.post("/denunciaDefinitivaPasa/:id", denunciaDefinitivaPasa);
+//Vista para denuncia al pasajero
+router.get("/reportPasa/:id", caliPasa);
+//Denuncias pasajeros
+router.post("/stairsPasa/:id", stairsPasa);
+
+
+//Vista para denuncia al pasajero
+router.get("/reportCondu/:id", caliCondu);
+//Denuncias pasajeros
+router.post("/stairCondu/:id", stairsCondu);
+
+
+
+
 
 
 

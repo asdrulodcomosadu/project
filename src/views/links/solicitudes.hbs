@@ -3,8 +3,7 @@
     <div class="alert alert-success" role="alert">
         <h4 class="alert-heading">Pasajeros</h4>
         <p>Estas son las solicitudes de pasajeros que quieren ir contigo en tu ruta, podrás observar su nombre, su
-            destino, el precio que te acepto, y su clasificación de fallas en anteriores rutas, entre más estrellas
-            negras más fallas tuvo.
+            destino, el precio que te acepto, y su clasificación de estrellas, su maxima clasificacion es de 5 estrellas.
         </p>
         <hr>
         <p class="mb-0">Te deseamos suerte con tus nuevos pasajeros</p>
@@ -13,7 +12,6 @@
         {{#each solicitudes}}
         <input class="mult" id="mult" value="{{puntuacion}}">
         <div class="col-lg-4 col-sm-12">
-
             <div class="card text-center">
                 <div class="card-header" style="font-size: 3vh;">
                     {{nombre}}
@@ -40,8 +38,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer" id="clasi" style="font-size: 3.5vh;">
-                    <p id="demo">Clasificación</p>
+                <div class="card-footer" id="clasi" style="font-size: 6vh;">
+                    <p id="demo"></p>
                 </div>
             </div>
         </div>
@@ -78,31 +76,27 @@
         });
     });
     window.onload = estreella;
-
     function estreella() {
         var start = document.getElementById("mult").value;
-        if(start == 0){
-             document.getElementById("demo").innerHTML = "Ninguna falla";
+        if(start >= 5 || start == 0){
+             document.getElementById("demo").innerHTML = "★★★★★";
+             document.getElementById("demo").style.color = "#33691e";
         }
-        else if (start == 1) {
-            document.getElementById("demo").innerHTML = "★";
-            document.getElementById("clasi").style.backgroundColor = '#388e3c';
+        else if (start < 5 && start >= 4) {
+           document.getElementById("demo").innerHTML = "★★★★";
+           document.getElementById("demo").style.color = "#7cb342";
         }
-        else if (start == 2) {
-            document.getElementById("demo").innerHTML = "★★";
-             document.getElementById("clasi").style.backgroundColor = '#8bc34a';
-        }
-        else if (start == 3) {
+        else if (start < 4 && start >= 3) {
             document.getElementById("demo").innerHTML = "★★★";
-             document.getElementById("clasi").style.backgroundColor = '#eeff41';
+            document.getElementById("demo").style.color = "#ffc107";
         }
-        else if (start == 4) {
-            document.getElementById("demo").innerHTML = "★★★★";
-             document.getElementById("clasi").style.backgroundColor = '#ffb74d';
+        else if (start < 3 && start >= 2) {
+            document.getElementById("demo").innerHTML = "★★";
+            document.getElementById("demo").style.color = "#e65100";
         }
-        else if (start == 5) {
-            document.getElementById("demo").innerHTML = "★★★★★";
-            document.getElementById("clasi").style.backgroundColor = '#c62828';
+        else if (start < 2 && start >= 1) {
+            document.getElementById("demo").innerHTML = "★";
+            document.getElementById("demo").style.color = "#ff5722";
         }
     }
     $('.seguir').on("click", function () {

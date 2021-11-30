@@ -12,16 +12,9 @@
                     <h5 class="card-title">{{parada}}</h5>
                     <h6 class="card-text">{{precio}}</h6>
                     <p class="card-text">{{comentario}}</p>
-                    <div class="row">
-                        <div style="padding-right: 6%;">
-                            <form action="/links/reportTravel/{{id}}" class="formDenuncRoute">
-                                <button type="submit" class="btn grey lighten-1">Denunciar</button>
-                            </form>
-                        </div>
-                        <form action="/links/DeleteTravel/{{id}}" class="formDelteRoute">
-                            <button type="submit" class="btn red darken-3">Eliminar</button>
+                        <form action="/links/reportCondu/{{id}}" class="formDelteRoute">
+                            <button type="submit" class="btn red darken-3">Bajarme de ruta</button>
                         </form>
-                    </div>
                 </div>
                 <div id="acciones" class="text-white text-center"
                     style="background: #1a4d99; text­align: justify; font-size:3vh">{{acciones}}</div>
@@ -38,7 +31,6 @@
         </div>
         {{/each}}
     </div>
-
 </div>
 <div class="botons">
     <div class="fixed-action-btn toolbar">

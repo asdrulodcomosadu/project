@@ -1,4 +1,5 @@
 <div class="spinner" id="loader"></div>
+<input class="mult" id="mult" value="{{ruta.ponderado}}">
 <input class="SeleccionarPrecios" id="PrecioParada1" value="{{ruta.precioParada1}}">
 <input class="SeleccionarPrecios" id="PrecioParada2" value="{{ruta.precioParada2}}">
 <input class="SeleccionarPrecios" id="PrecioParada3" value="{{ruta.precioParada3}}">
@@ -20,8 +21,8 @@
     </p>
     <form action="/links/addSolicitud/{{ruta.id}}" method="POST" onsubmit="return validar()">
         <div class="card">
-            <div class="card-header">
-                Selecciona tu destino
+            <div class="card-header" style="font-size: 3.5vh;">
+                    <p id="demo" class="center-block"></p>
             </div>
             <div class="card-body">
                 <div class="form-group col-md-8">
@@ -35,7 +36,7 @@
                     </select>
                 </div>
                 <textarea type="text" class="form-control precio" id="precio" name="precio" rows="1" readonly></textarea><br><br>
-
+               
                 <button type="submit" class="btn blue darken-3">Me sirve</button>
             </div>
         </div>
@@ -61,6 +62,30 @@
             toolbarEnabled: true
         });
     });
+     window.onload = estreella;
+    function estreella() {
+        var start = document.getElementById("mult").value;
+        if(start >= 5 || start == 0){
+             document.getElementById("demo").innerHTML = "★★★★★";
+             document.getElementById("demo").style.color = "#33691e";
+        }
+        else if (start < 5 && start >= 4) {
+           document.getElementById("demo").innerHTML = "★★★★";
+           document.getElementById("demo").style.color = "#7cb342";
+        }
+        else if (start < 4 && start >= 3) {
+            document.getElementById("demo").innerHTML = "★★★";
+            document.getElementById("demo").style.color = "#ffc107";
+        }
+        else if (start < 3 && start >= 2) {
+            document.getElementById("demo").innerHTML = "★★";
+            document.getElementById("demo").style.color = "#e65100";
+        }
+        else if (start < 2 && start >= 1) {
+            document.getElementById("demo").innerHTML = "★";
+            document.getElementById("demo").style.color = "#ff5722";
+        }
+    }
 
     function seleccionado() {
         var pr1 = document.getElementById("PrecioParada1").value;

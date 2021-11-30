@@ -5,7 +5,8 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-CREATE DATABASE comodifyBD;
+
+ CREATE DATABASE comodifyBD;
 
 USE comodifyBD;
 
@@ -34,34 +35,6 @@ INSERT INTO `admin` (`id`, `idUser`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `casosgravesconductores`
---
-
-CREATE TABLE `casosgravesconductores` (
-  `idCaso` int(11) NOT NULL,
-  `idConductor` int(11) NOT NULL,
-  `denuncia` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `casosgravespasajeros`
---
-
-CREATE TABLE `casosgravespasajeros` (
-  `idCaso` int(11) NOT NULL,
-  `idPasajero` int(11) NOT NULL,
-  `denuncia` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `conductores`
 --
 
@@ -79,8 +52,8 @@ CREATE TABLE `conductores` (
   `modelo` varchar(100) NOT NULL,
   `responsabilidad` varchar(100) NOT NULL,
   `disponible` varchar(100) NOT NULL,
-  `denuncias` int(11) NOT NULL,
-  `multa` varchar(250) NOT NULL
+  `estrellas` int(11) NOT NULL,
+  `votantes` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -100,7 +73,8 @@ CREATE TABLE `pasajeros` (
   `departamento` varchar(150) NOT NULL,
   `municipio` varchar(150) NOT NULL,
   `responsabilidad` varchar(5) NOT NULL,
-  `denuncias` int(11) NOT NULL
+  `estrellas` int(11) NOT NULL,
+  `votantes` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -132,8 +106,10 @@ CREATE TABLE `ruta` (
   `fechaInicial` varchar(100) NOT NULL,
   `ocupacion` varchar(100) NOT NULL,
   `precioPagar` int(100) NOT NULL,
-  `linkCobro` varchar(500) NOT NULL
+  `linkCobro` varchar(500) NOT NULL,
+  `ponderado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 -- --------------------------------------------------------
 
@@ -182,7 +158,6 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `pass`, `email`) VALUES
 (1, 'admin0001', '$2a$10$LLYfeTKy/Hk4ukgGbRXBp.p5J5MJ.7qY53WwPmXssTL5d/9aGGKkS', 'henryasdrubalrodriguezmorales@gmail.com');
-
 -- --------------------------------------------------------
 
 --
@@ -210,20 +185,6 @@ CREATE TABLE `viajes` (
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idUser` (`idUser`);
-
---
--- Indices de la tabla `casosgravesconductores`
---
-ALTER TABLE `casosgravesconductores`
-  ADD PRIMARY KEY (`idCaso`),
-  ADD KEY `idConductor` (`idConductor`);
-
---
--- Indices de la tabla `casosgravespasajeros`
---
-ALTER TABLE `casosgravespasajeros`
-  ADD PRIMARY KEY (`idCaso`),
-  ADD KEY `idPasajero` (`idPasajero`);
 
 --
 -- Indices de la tabla `conductores`
@@ -287,18 +248,6 @@ ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `casosgravesconductores`
---
-ALTER TABLE `casosgravesconductores`
-  MODIFY `idCaso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
-
---
--- AUTO_INCREMENT de la tabla `casosgravespasajeros`
---
-ALTER TABLE `casosgravespasajeros`
-  MODIFY `idCaso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
-
---
 -- AUTO_INCREMENT de la tabla `conductores`
 --
 ALTER TABLE `conductores`
@@ -343,18 +292,6 @@ ALTER TABLE `viajes`
 --
 ALTER TABLE `admin`
   ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `casosgravesconductores`
---
-ALTER TABLE `casosgravesconductores`
-  ADD CONSTRAINT `denuncia-conductor` FOREIGN KEY (`idConductor`) REFERENCES `conductores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `casosgravespasajeros`
---
-ALTER TABLE `casosgravespasajeros`
-  ADD CONSTRAINT `denuncia-pasajero` FOREIGN KEY (`idPasajero`) REFERENCES `pasajeros` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `conductores`

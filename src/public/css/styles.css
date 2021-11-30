@@ -513,6 +513,109 @@ table th {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+.formStair {
+  width: 40vh;
+  margin: 0 auto;
+  height: 8vh;
+}
+
+.formStair p {
+  text-align: center;
+}
+.formStair label {
+  font-size: 6vh;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
+}
+
+.estre{
+  width: 2vh;
+  height: 2vh;
+}
+
+.demo{
+  font-size: 6vh;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*  Our team */
 
 .about-services{

@@ -1,10 +1,8 @@
 <div class="spinner" id="loader"></div>
-
 <div class="container p-4">
     <div class="row">
         {{#each datesDriver}}
         <div class="row">
-            <input class="mult" id="mult" value="{{denuncias}}">
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-image">
@@ -16,7 +14,6 @@
                     <div class="card-content">
                         <p>Vive en {{departamento}} - {{municipio}}</p>
                         <p>Disponibilidad: {{disponible}}</p>
-                        <p>Denuncias: {{denuncias}}</p>
                     </div>
                 </div>
             </div>
@@ -28,12 +25,6 @@
         <button type="button" class="btn red darken-2" data-toggle="modal" data-target="#exampleModal">
             Condiciones
         </button>
-        <br><br>
-        <div class="row">
-            <a href="{{multa}}" class="btn red accent-4 btM" id="btnM">Multa</a><br><br>
-        </div>
-
-
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -114,15 +105,6 @@
     });
 
     $('.seguir').on("click", function () {
-        console.log("Hola")
         document.getElementById("loader").style.display = "block";
     });
-
-    window.onload = multa;
-    function multa() {
-        var pago = document.getElementById("mult").value;
-        if (pago >= 5) {
-            document.getElementById("btnM").style.display = "block";
-        }
-    }
 </script>
