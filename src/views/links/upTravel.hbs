@@ -21,8 +21,8 @@
     </p>
     <form action="/links/addSolicitud/{{ruta.id}}" method="POST" onsubmit="return validar()">
         <div class="card">
-            <div class="card-header" style="font-size: 3.5vh;">
-                    <p id="demo" class="center-block"></p>
+            <div class="card-header" style="font-size: 4.5vh;">
+                <p id="demo" class="center-block"></p>
             </div>
             <div class="card-body">
                 <div class="form-group col-md-8">
@@ -50,7 +50,7 @@
         <ul>
             <li><a class="btn-floating seguir" href="javascript: history.go(-1)"><i class="fas fa-arrow-left"></i></a></li>
             <li><a class="btn-floating seguir" href="/links/profiles"><i class="fa fa-address-book"></i></a></li>
-            <li><a class="btn-floating seguir" href="links/routes"><i class="fa fa-route"></i></a></li>
+            <li><a class="btn-floating seguir" href="/links/routes"><i class="fa fa-route"></i></a></li>
             <li><a class="btn-floating seguir" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
         </ul>
     </div>
@@ -67,7 +67,7 @@
         var start = document.getElementById("mult").value;
         if(start >= 5 || start == 0){
              document.getElementById("demo").innerHTML = "★★★★★";
-             document.getElementById("demo").style.color = "#33691e";
+             document.getElementById("demo").style.color = "#039be5";
         }
         else if (start < 5 && start >= 4) {
            document.getElementById("demo").innerHTML = "★★★★";
@@ -127,4 +127,8 @@
             document.getElementById("loader").style.display = "block";
         }
     }
+    $('.seguir').on("click", function () {
+            console.log("Hola")
+            document.getElementById("loader").style.display = "block";
+        });
 </script>

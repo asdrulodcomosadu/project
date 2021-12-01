@@ -39,7 +39,14 @@ import {
   rutaInactivas,
   dRutaInactiva,
 
+  badDrivers,
 
+  badDriver,
+
+  badPass,
+
+
+  badDp,
 
   
   
@@ -167,6 +174,21 @@ router.get("/rutaInactivas", rutaInactivas);
 //Eliminar inactiva de largo plazo
 router.get("/dRutaInactiva/:id", dRutaInactiva)
 
+//Malos conductores
+router.get("/badDrivers", badDrivers);
+
+
+//Malos conductores
+router.get("/badDriver/:id", badDriver);
+
+//Malos pasajeros
+router.get("/badPass", badPass);
+
+//Malos conductores
+router.get("/badDp/:id", badDp);
+
+
+
 
 
 
@@ -256,13 +278,10 @@ router.get("/ViajeSelectNo/:id", addNoTViaje);
 router.get("/solicitudesPas/:id", solicitudesPasajero);
 //Eliminar solicitud
 router.get("/eliminarSol/:id", eliminarSol);
-
 //Vista para denuncia al pasajero
 router.get("/reportPasa/:id", caliPasa);
 //Denuncias pasajeros
 router.post("/stairsPasa/:id", stairsPasa);
-
-
 //Vista para denuncia al pasajero
 router.get("/reportCondu/:id", caliCondu);
 //Denuncias pasajeros

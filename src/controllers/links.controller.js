@@ -414,12 +414,54 @@ export const rutaInactivas = async (req, res) => {
 //Eliminar inactiva de largo plazo
 export const dRutaInactiva = async (req, res) => {
   const { id } = req.params;
-  //Query para la Eliminación de los datos, con el boton de Borrar
   await pool.query("DELETE FROM ruta WHERE ID = ?", [id]);
   req.flash("success", "Ruta Eliminado");
   res.redirect("/links/rutaInactivas");
 };
 
+//Malos conductores
+export const badDrivers = async (req, res) => {
+  const admi = req.user.id;
+  const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
+  if (admin.length > 0) {
+    const driversB = await pool.query("SELECT * FROM conductores WHERE votantes >= 10 AND disponible != 'Mal servicio'");
+    res.render("links/adminBadDrivers", { driversB });
+  } else {
+    res.render("profile");
+  }
+};
+
+//Eliminar inactiva de largo plazo
+export const badDriver = async (req, res) => {
+  const { id } = req.params;
+  console.log(id)
+  await pool.query("DELETE FROM ruta WHERE idConductor = ?", [id]);
+  await pool.query("UPDATE conductores set disponible = 'Mal servicio' WHERE id = ?", [id]);
+  req.flash("success", "Conductor inhabilitado");
+  res.redirect("/links/badDrivers");
+};
+
+//Malos conductores
+export const badPass = async (req, res) => {
+  const admi = req.user.id;
+  const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
+  if (admin.length > 0) {
+    const passagerB = await pool.query("SELECT * FROM pasajeros WHERE votantes >= 10");
+    res.render("links/adminBadPass", { passagerB });
+  } else {
+    res.render("profile");
+  }
+};
+
+
+//Eliminar inactiva de largo plazo
+export const badDp = async (req, res) => {
+  const { id } = req.params;
+  console.log(id)
+  await pool.query("DELETE FROM pasajeros WHERE id = ?", [id]);
+  req.flash("success", "Conductor inhabilitado");
+  res.redirect("/links/badDrivers");
+};
 
 
 
@@ -952,18 +994,15 @@ export const addSolicitud = async (req, res) => {
   const votantes = await pool.query("SELECT votantes FROM pasajeros WHERE id = ?", [pasa]);
   var vt = Object.values(votantes[0])[0];
   var dns = Object.values(denuncia[0])[0];
-  console.log(dns,vt," denuncuas y vorantes")
   const sum = dns + vt;
   const prome = vt * 5;
-  console.log(prome, "votantes por 5")
   const rating = (sum * 5) / prome
-  console.log(rating.toFixed(1), "Rating")
   const userName = await pool.query("SELECT nombre FROM pasajeros WHERE idUser = ?", [userP]);
   var pasaName = Object.values(userName[0])[0];
   const soli = await pool.query("SELECT id FROM solicitudes WHERE idPasajero = ?", [pasa]);
   const rutaAc = await pool.query("SELECT id FROM viajes WHERE idPasajero = ?", [pasa]);
-    if (soli.length <= 1 && rutaAc.length < 1) {
-      console.log(soli.length, " y esta mierda ",rutaAc.length )
+  console.log(soli.length, " y esta mierda ",rutaAc.length )
+  if (soli.length < 1 && rutaAc.length <= 1) {
       const { parada, precio } = req.body;
       const newLink = {
         parada,
@@ -974,11 +1013,11 @@ export const addSolicitud = async (req, res) => {
         puntuacion: Math.trunc(rating),
       };
       await pool.query('INSERT INTO solicitudes set ?', [newLink]);
-      req.flash('success', 'Espera que te acepten en su viaje, vuelve a entrar mas tarde.');
+      req.flash('success', 'Espera que te acepten en su viaje, vuelve a entrar más tarde.');
       res.redirect("/links/solicitudesPas/"+pasa);
     }
     else {
-      req.flash("message", "Ya has enviado dos solicitudes o estas en activ@ en 2 rutas");
+      req.flash("message", "Ya has enviado una solicitud o estas activ@ en 1 o 2 rutas");
       res.redirect("/links/datesProfilePassager");
     }
 };
@@ -1092,12 +1131,12 @@ export const caliCondu = async (req, res) => {
   const ruta = await pool.query("SELECT idRuta FROM viajes WHERE id = ?", [id]);
   var rts = Object.values(ruta[0])[0];
   console.log(rts)
-  await pool.query("DELETE FROM viajes WHERE id = ?", [id]);
   const con = await pool.query("SELECT idConductor FROM ruta WHERE id = ?", [rts]);
   var cds = Object.values(con[0])[0];
   await pool.query("UPDATE ruta set ocupacion = 'Disponible' WHERE id = ?", [rts]);
   const condu = await pool.query("SELECT nombre,id FROM conductores WHERE id = ?", [cds]);
   res.render("links/caliCondu", { condu });
+  await pool.query("DELETE FROM viajes WHERE id = ?", [id]);
 };
 //Vista para Denunciar ruta
 export const stairsCondu = async (req, res) => {

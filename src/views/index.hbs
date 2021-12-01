@@ -255,6 +255,7 @@
                 </div>
             </div>
         </div>
+
     </section>
     <section class="app">
         <center>
@@ -326,4 +327,24 @@
 
 <script>
 
+    function validar() {
+        //Aca aprendes. 
+        var comentario;
+
+
+        comentario = document.getElementById("pqrs").value;
+        user = document.getElementById("correo").value;
+
+        if (comentario === "" || user === "") {
+            swal.fire({
+                title: "ERROR",
+                text: "No lo puedes enviar.",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        } else {
+            document.getElementById("loader").style.display = "block";
+        }
+    }
 </script>
