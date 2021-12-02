@@ -650,6 +650,7 @@ export const createRoute = async (req, res) => {
   const idConductor = userD;
   const modelo = transito;
   const ocupacion = "Disponible";
+  const link = "nada"
   const newRuta = {
     dias,
     hora,
@@ -671,7 +672,8 @@ export const createRoute = async (req, res) => {
     ocupacion,
     idConductor,
     ponderado:Math.trunc(rating),
-    precioPagar:0
+    precioPagar:0,
+    linkCobro:link
   };
   await pool.query('INSERT INTO ruta set ?', [newRuta]);
   req.flash('success', 'Felicidades, Espera que te vayan llegando tus pasajeros');
