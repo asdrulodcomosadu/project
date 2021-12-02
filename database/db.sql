@@ -1,11 +1,3 @@
-
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
 CREATE DATABASE comodifyBD;
 
 USE comodifyBD;
@@ -324,5 +316,4 @@ ALTER TABLE `solicitudes`
 ALTER TABLE `viajes`
   ADD CONSTRAINT `ruta-viaje` FOREIGN KEY (`idRuta`) REFERENCES `ruta` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `viaje-pasajero` FOREIGN KEY (`idPasajero`) REFERENCES `pasajeros` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
