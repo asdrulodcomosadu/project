@@ -6,7 +6,7 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
- CREATE DATABASE comodifyBD;
+CREATE DATABASE comodifyBD;
 
 USE comodifyBD;
 
