@@ -93,7 +93,7 @@
         function estaodos() {
             var pago = document.getElementById("pago").value;
             var btnP = document.getElementById("btnPagar");
-            if (pago.length > 0) {
+            if (pago != "n") {
                 btnP.style.backgroundColor = 'red';
             }
         }

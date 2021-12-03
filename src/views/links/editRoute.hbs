@@ -1,7 +1,10 @@
+<script language="JavaScript">
+    window.history.replaceState({}, '', 'EdiRouteDriverConnectionSuccess');
+</script>
 <div class="spinner" id="loader"></div>
 <div class="container p-2">
     <form action="/links/editRouteCreated/{{datosRuta.id}}" method="POST" onsubmit="return validar()">
-        <h5>Crea tu ruta</h5>
+        <h5>Edita tu ruta</h5>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="dias">Días</label>
@@ -206,8 +209,15 @@
         parada1 = document.getElementById("parada1").value;
         precioParada1 = document.getElementById("precioParada1").value;
 
+         parada2 = document.getElementById("parada2").value;
+        precioParada2 = document.getElementById("precioParada2").value;
+        parada3 = document.getElementById("parada3").value;
+        precioParada3 = document.getElementById("precioParada3").value;
+        parada4 = document.getElementById("parada4").value;
+        precioParada4 = document.getElementById("precioParada4").value;
+
         if (dias === "" || hora === "" || asientos === "" || lugarInicial === "" || localidad === "" || lugarFinal === "" ||
-            fechaInicial === "" || comentario === "" || parada1 === "" || precioParada1 === "") {
+            fechaInicial === "" || comentario === "" || parada1 === "" || precioParada1 === "" || parada2 === "" || precioParada2 === "" || parada3 === "" || precioParada3 === "" || parada4 === "" || precioParada4 === "") {
             swal.fire({
                 title: "FALTAN",
                 text: "DATOS POR LLENAR",
@@ -219,6 +229,4 @@
             document.getElementById("loader").style.display = "block";
         }
     }
-     var myNewURL = "Ingresar";//the new URL
-  window.history.pushState("object or string", "Title", "/" + myNewURL );
 </script>

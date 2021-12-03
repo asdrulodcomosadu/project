@@ -650,7 +650,7 @@ export const createRoute = async (req, res) => {
   const idConductor = userD;
   const modelo = transito;
   const ocupacion = "Disponible";
-  const link = "nada"
+  const link = "n"
   const newRuta = {
     dias,
     hora,
