@@ -10,6 +10,7 @@ import {
   ChangePass,
   renderRecover,
   recoPass,
+  renderPolitics,
   logout,
 } from "../controllers/auth.controller";
 

@@ -270,81 +270,8 @@
                 © 2021 Todos los Derechos Reservados | <a href="">Comodify</a>
             </div>
             <div class="information">
-                <a href="" data-toggle="modal" data-target=".bd-example-modal-lg">Términos y Condiciones</a>
-            </div>
-        </div>
-    </div>
-    <!-- Modal Terminos y condiciones -->
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #1a4d99;color:#fff;">
-                    <h5 class="modal-title" id="exampleModalLongTitle">
-                        Términos y Condiciones</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="x" style="color:#fff;">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p class="terminos">Esta página web es propiedad y está operando por Comodify. Estos Términos
-                        establecen los
-                        términos y condiciones bajo los cuales el usuario puede usar nuestra página web y servicios
-                        ofrecidos
-                        por Comodify.
-                        El aplicativo de Comodify ofrece a los usuarios crear, buscar y utilizar rutas de
-                        viajes compartidos con datos personales para ofrecer seguridad en los viajes,
-                        al acceder y usar el aplicativo Comodify y la página web de nuestro servicio,
-                        usted aprueba
-                        que haya leído, entendido y aceptado estar sujeto a estos Términos:</p>
-                    <p class="terminos"><strong>¿Cuáles son los requisitos para crear una cuenta?</strong></p>
-                    <p class="terminos">Para usar nuestra aplicación o página web y / o recibir nuestros servicios,
-                        debes tener al
-                        menos [18] años de edad, o estar acompañado de alguien con la mayoría de edad legal, para
-                        participar en estos Términos como un acuerdo vinculante.</p>
-                    <p class="terminos"><strong>Derecho a suspender o cancelar la cuenta de usuario</strong></p>
-                    <p class="terminos">Puedes discontinuar el uso y solicitar cancelar tu cuenta y / o cualquier
-                        servicio en cualquier momento desde que estés al día con tus bonificaciones a Comodify.</p>
-                    <p class="terminos"><strong>Limitación de responsabilidad</strong></p>
-                    <p class="terminos">En la máxima medida permitida por la ley aplicable, en ningún caso Comodify será
-                        responsable por daños indirectos, punitivos, incidentales, especiales, consecuentes o
-                        ejemplares,
-                        incluidos, entre otros, daños por pérdida de beneficios, uso, datos. U otras
-                        pérdidas intangibles, que surjan de o estén relacionadas con el uso o la imposibilidad de
-                        utilizar el
-                        servicio.</p>
-                    <p class="terminos"><strong>Emails de información y noticias</strong></p>
-                    <p class="terminos">Acepta recibir de vez en cuando nuestros mensajes y materiales de información,
-                        por correo
-                        electrónico o cualquier otro formulario de contacto que nos proporciones (incluido tu número de
-                        teléfono
-                        para llamadas o mensajes de texto).</p>
-                </div>
+                <a href="/politics">Políticas de Privacidad</a>
             </div>
         </div>
     </div>
 </footer>
-
-<script>
-
-    function validar() {
-        //Aca aprendes. 
-        var comentario;
-
-
-        comentario = document.getElementById("pqrs").value;
-        user = document.getElementById("correo").value;
-
-        if (comentario === "" || user === "") {
-            swal.fire({
-                title: "ERROR",
-                text: "No lo puedes enviar.",
-                timer: 3000,
-                showConfirmButton: false
-            })
-            return false;
-        } else {
-            document.getElementById("loader").style.display = "block";
-        }
-    }
-</script>

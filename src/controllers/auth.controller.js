@@ -43,9 +43,6 @@ authCtrl.recoPass = passport.authenticate('local.recover', {
 });
 
 
-
-
-
 authCtrl.logout = (req, res, next) => {
     req.logOut();
     res.redirect('/');

@@ -10,7 +10,7 @@
     <div class="col-md-6 mx-auto">
       <div class="card text-center">
         <div class="card-header">
-          <h2>Ingresar</h2>
+          <h3>Ingresar</h3>
         </div>
         <div class="card-body">
           <form action="/signin" method="POST" onsubmit="return empieza();">
@@ -19,7 +19,10 @@
                 autofocus>
             </div>
             <div class="form-group">
-              <input type="password" id="clave" name="pass" placeholder="Clave" class="form-control textos">
+               <div class="campo">
+                <input type="password" id="clave" name="pass" placeholder="Clave" class="form-control textos">
+                <span>Mostrar</span>
+              </div>
             </div>
             <a class="textos" href="/signup">No tengo cuenta</a><br><br>
             <a class="textos" href="/recover">Olvide mi contraseña</a><br><br>
@@ -41,6 +44,18 @@
   </div>
 </div>
 <script>
+  document.querySelector('.campo span').addEventListener('click', e => {
+    const passwordInput = document.querySelector('#clave');
+    if (e.target.classList.contains('show')) {
+      e.target.classList.remove('show');
+      e.target.textContent = 'Ocultar';
+      passwordInput.type = 'text';
+    } else {
+      e.target.classList.add('show');
+      e.target.textContent = 'Mostrar';
+      passwordInput.type = 'password';
+    }
+  });
   function empieza() {
     var usuario, clave, correo, expresion;
     usuario = document.getElementById("usuario").value;

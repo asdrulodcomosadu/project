@@ -505,6 +505,19 @@ table th {
   padding: 2px 10px;
 }
 
+.campo2 {
+  position: relative;
+}
+
+.campo2 span {
+  position: absolute;
+  right: 10px;
+  top: 1.6vh;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 2px 10px;
+}
+
 
 
 
