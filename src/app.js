@@ -70,6 +70,12 @@ const upload = multer ({
 })
 
 app.post("/files", upload.array('licencia',4), (req, res)=>{
+  const files = req.files
+  if (!files) {
+    const error = new Error('Please choose files')
+    error.httpStatusCode = 400
+    return next(error)
+  }
   res.render('uploadSuccessFull')
 })
 
