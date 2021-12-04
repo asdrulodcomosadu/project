@@ -1,0 +1,74 @@
+<div class="spinner" id="loader"></div>
+<div class="container p-2">
+        {{#each identi}}
+        <div class="card text-center">
+            <div class="card-header">
+               Saludos {{nombre}}, selecciona los 4 documentos requeridos.
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Documentos</h5>
+                <form action="/files" method="post" enctype="multipart/form-data" onsubmit="return validar()">
+                    <input type="file" name="licencia" id="licencia" accept="image/png,image/jpeg" multiple><br><br>
+                    <input type="submit" value="Enviar" class="btn btn-primary btn-lg text-white">
+                </form>
+            </div>
+            <div class="card-footer text-muted">
+                Estas más cerca para crear tus rutas
+            </div>
+        </div>
+        <div class="row">
+        <div class="col s12 m5">
+            <div class="card-panel blue darken-3">
+                <span class="white-text">Debe subir 4 fotos claras de los siguientes Documentos. deben nombrarse con el
+                    prefijo del nombre del documento seguido de su número de documento de identidad.
+                    Ejemplo: Soat{{identificacion}}
+                    <br>
+                    1- Licencia de conducción --> Licenci{{identificacion}}
+                    <br><br>
+                    2- Soat --> Soat{{identificacion}}
+                    <br><br>
+                    3- Antecendentes --> Antecedentes{{identificacion}}
+                    <br><br>
+                    4- Foto del vehiculo que se observe claramente su placa -->  Vehiculo{{identificacion}}
+                    <br><br>
+                    Si haces el registro y tus fotos no tienen las indicaciones anteriormente explicadas, no se le
+                    proporcionara permiso
+                    de prestar el servicio con Comodify.
+                    <br>
+                    Si no los vas a subir hoy, sal y vulve a entrar cuando los tengas.  <a href="/logout"><button type="button" class="btn blue-grey darken-2">Salir</button></a>
+                </span>
+            </div>
+        </div>
+    </div>
+        {{else}}
+            <div class="card">
+                <div class="card-body grey darken-2 text-white text-center">
+                    No te encuentras registrado dentro de conductores, o ya subiste tus archivos. <a href="/profile">Atras</a>
+                </div>
+            </div>
+        {{/each}}
+</div>
+<script>
+    function validar() {
+        var documents = $("#licencia")[0].files.length;
+        if (documents === 0) {
+            swal.fire({
+                title: "Documentos",
+                text: "No tienes ningún archivo seleccionado",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        } else if (documents <= 3 || documents >= 5) {
+            swal.fire({
+                title: "Documentos",
+                text: "Debes elegir solo 4 fotos",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        } else {
+            document.getElementById("loader").style.display = "block";
+        }
+    }
+</script>

@@ -489,7 +489,6 @@ export const addDriver = async (req, res) => {
   const resposability = "SI";
   const disponibilidad = "En validación"
   const { nombre, apellido, edad, identificacion, celular, departamento, municipio, placa, modelo } = req.body;
-  const dispo = "En validación";
   const newPassager = {
     idUser: req.user.id,
     nombre,
@@ -507,7 +506,7 @@ export const addDriver = async (req, res) => {
     votantes:1,
   };
   await pool.query('INSERT INTO conductores set ?', [newPassager]);
-  req.flash('success', 'Felicidades, has creado tu perfil como conductor en el transcurso de 24 horas te validaremos');
+  req.flash('success', 'Felicidades, has creado tu perfil como conductor, ahora puedes subir tus documentos en un computador ingresando a www.comodify.digital, en la sección Conductor.');
   res.redirect("datesProfileDriver");
 };
 // Edición de conductor
@@ -546,7 +545,6 @@ export const renderCreateProfilePassager = (req, res) => {
 export const addPassager = async (req, res) => {
   const resposability = "SI";
   const { nombre, apellido, edad, identificacion, celular, departamento, municipio, responsabilidad } = req.body;
-  const dispo = "En validación";
   const newPassager = {
     idUser: req.user.id,
     nombre,
@@ -1157,4 +1155,11 @@ export const stairsCondu = async (req, res) => {
   await pool.query("UPDATE conductores set estrellas = ? WHERE id = ?", [sum, id]);
   req.flash("success", "Te bajaste de una ruta, y le calificaste",estrellas);
   res.redirect("/profile");
+};
+
+//Busqueda de rutas
+export const renderSearchCedula = async (req, res) => {
+  const { search } = req.body;
+  const identi = await pool.query("SELECT * FROM conductores WHERE identificacion = ? AND disponible = 'En validación'", [search]);
+  res.render("links/uploadDocumets", { identi });
 };

@@ -93,7 +93,8 @@ import {
   caliPasa,
   stairsPasa,
   caliCondu,
-  stairsCondu
+  stairsCondu,
+  renderSearchCedula
 
 
 } from "../controllers/links.controller";
@@ -287,7 +288,8 @@ router.get("/reportCondu/:id", caliCondu);
 //Denuncias pasajeros
 router.post("/stairCondu/:id", stairsCondu);
 
-
+//Busqueda de rutas
+router.post("/bCedula", renderSearchCedula);
 
 
 
