@@ -59,6 +59,14 @@
                 showConfirmButton: false
             })
             return false;
+        } else if (documents <= 3 || documents >= 5) {
+            swal.fire({
+                title: "Documentos",
+                text: "Debes elegir solo 4 fotos",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
         } else {
             document.getElementById("loader").style.display = "block";
         }
