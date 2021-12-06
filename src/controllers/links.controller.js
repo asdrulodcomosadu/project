@@ -195,7 +195,7 @@ export const rutasCobro = async (req, res) => {
   const admi = req.user.id;
   const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
   if (admin.length > 0) {
-    const rutasCobro = await pool.query("SELECT * FROM ruta WHERE precioPagar >= 2650 AND linkCobro = ''");
+    const rutasCobro = await pool.query("SELECT * FROM ruta WHERE precioPagar >= 2650 AND linkCobro = 'n'");
     res.render("links/adminRutasParaCobrar", { rutasCobro });
   } else {
     res.render("profile");
@@ -233,7 +233,7 @@ export const rutasLiquidaciones = async (req, res) => {
   const admi = req.user.id;
   const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
   if (admin.length > 0) {
-    const rutasliquidadas = await pool.query("SELECT * FROM ruta WHERE linkCobro != ''");
+    const rutasliquidadas = await pool.query("SELECT * FROM ruta WHERE linkCobro != 'n'");
     res.render("links/adminRutasLiquidadas", { rutasliquidadas });
   } else {
     res.render("profile");
@@ -259,8 +259,8 @@ export const enviarLiquidacion = async (req, res) => {
     const { id } = req.params;
     const { linkCobro, precioPagar, ocupacion } = req.body;
     const cobro = {
-      linkCobro,
-      precioPagar,
+      linkCobro:'n',
+      precioPagar:0,
       ocupacion
     }
     await pool.query("UPDATE ruta set ? WHERE id = ?", [cobro, id]);
@@ -275,7 +275,7 @@ export const adeudados = async (req, res) => {
   const admi = req.user.id;
   const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
   if (admin.length > 0) {
-    const deudores = await pool.query("SELECT * FROM ruta WHERE precioPagar >= 3900 AND precioPagar < 5000 AND linkCobro != '' AND ocupacion = 'Disponible'");
+    const deudores = await pool.query("SELECT * FROM ruta WHERE precioPagar >= 3000 AND precioPagar < 5000 AND linkCobro != '' AND ocupacion = 'Disponible'");
     res.render("links/adminAdeudados", { deudores });
   } else {
     res.render("profile");
@@ -298,32 +298,7 @@ export const enviarLiquidacionNueva = async (req, res) => {
   }
 };
 
-//Denunciados
-export const denuncias = async (req, res) => {
-  const admi = req.user.id;
-  const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
-  if (admin.length > 0) {
-    const denunciados = await pool.query("SELECT * FROM ruta WHERE ocupacion = 'Detenida'");
-    res.render("links/adminDenunciados", { denunciados });
-  } else {
-    res.render("profile");
-  }
-};
 
-//Liquidar Ruta Denunciada
-export const enviarLiquidacionDenunciada = async (req, res) => {
-  const admi = req.user.id;
-  const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
-  if (admin.length > 0) {
-    const { id } = req.params;
-    const ocupacion = "Disponible"
-    await pool.query("UPDATE ruta set ocupacion = ? WHERE id = ?", [ocupacion, id]);
-    req.flash("success", "has cambiado el estado a disponible de la ruta ", id);
-    res.redirect("/links/denuncias");
-  } else {
-    res.render("profile");
-  }
-};
 //Actividad de rutas
 export const actividadFechas = async (req, res) => {
   const admi = req.user.id;
@@ -452,7 +427,6 @@ export const badPass = async (req, res) => {
     res.render("profile");
   }
 };
-
 
 //Eliminar inactiva de largo plazo
 export const badDp = async (req, res) => {

@@ -28,8 +28,6 @@ import {
   enviarLiquidacion,
   adeudados,
   enviarLiquidacionNueva,
-  denuncias,
-  enviarLiquidacionDenunciada,
   actividadFechas,
   rutaInictiva,
   enviarLiquidacinRutaInactiva,
@@ -154,10 +152,6 @@ router.post("/enviarLiquidacion/:id", enviarLiquidacion);
 router.get("/adeudados", adeudados);
 //Denunciar Ruta
 router.get("/enviarLiquidacionNueva/:id", enviarLiquidacionNueva);
-//Denunciados
-router.get("/denuncias", denuncias);
-//Liquidar Ruta Denunciada
-router.get("/enviarLiquidacionDenunciada/:id", enviarLiquidacionDenunciada);
 //Actividad de rutas
 router.get("/actividadFechas", actividadFechas);
 //Selección ruta sin actividad
