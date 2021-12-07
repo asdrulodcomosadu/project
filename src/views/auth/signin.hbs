@@ -27,13 +27,6 @@
             <a class="textos lik" href="/signup">No tengo cuenta</a>
             <a class="textos lik" href="/recover">Olvide mi contraseña</a>
             <a class="textos lik" href="/change">Cambiar contraseña</a>
-            <div class="input-container cta lik">
-              <label class="checkbox-container textos">
-                <input type="checkbox" value="lsRememberMe" id="rememberMe" onclick="lsRememberMe()">
-                <span class="checkmark"></span>
-                Recordar credenciales
-              </label>
-            </div>
             <button class="btn btn-block textos btn-lg" id="carga">
               Ingresar
             </button>
@@ -72,25 +65,4 @@
         document.getElementById("loader").style.display = "block";
     }
   }
-  const rmCheck = document.getElementById("rememberMe"),
-    emailInput = document.getElementById("usuario");
-
-  if (localStorage.checkbox && localStorage.checkbox !== "") {
-    rmCheck.setAttribute("checked", "checked");
-    emailInput.value = localStorage.username;
-  } else {
-    rmCheck.removeAttribute("checked");
-    emailInput.value = "";
-  }
-
-  function lsRememberMe() {
-    if (rmCheck.checked && emailInput.value !== "") {
-      localStorage.username = emailInput.value;
-      localStorage.checkbox = rmCheck.value;
-    } else {
-      localStorage.username = "";
-      localStorage.checkbox = "";
-    }
-  }
-
 </script>

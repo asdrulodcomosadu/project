@@ -4,8 +4,9 @@
     <p>La referencia de esta ruta es la {{actividad.fechaCreacion}}</p>
     <hr class="my-4">
     <p>pegar el link de cobro en la siguiente entrada</p>
-    <p>Si no tiene nada que pagar o su sumatoria es menor a 3.000, se le cobran 3 mil pesos para poderla habilitar, o si
-        tiene el precio mayor que 3.000 ese precio se le cobra exactamente.</p>
+    <p>Si no tiene nada que pagar o su sumatoria es menor a 12.000, se le cobran 12 mil pesos para poderla habilitar, o
+        si
+        tiene el precio mayor que 12.000 ese precio se le cobra exactamente.</p>
     <form action="/links/enviarLiquidacinRutaInactiva/{{actividad.id}}" method="POST" class="ActionForm">
         <div class="form-group">
             <label for="exampleInputEmail1">Link cobro PayU</label>
@@ -28,20 +29,33 @@
 <script>
     $('.ActionForm').submit(function (e) {
         e.preventDefault();
-        Swal.fire({
-            title: 'Confirmación',
-            text: "¿De verdad quieres inactivar esta ruta?",
-            icon: 'info',
-            showCancelButton: true,
-            confirmButtonColor: '#c51162',
-            cancelButtonText: 'No, Inactivar',
-            confirmButtonText: 'Si, Inactivar',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.isConfirmed) {
-                this.submit();
-            }
-        })
+        var precio = document.getElementById("precioPagar").value;
+        console.log(precio)
+        if (precio === "") {
+            swal.fire({
+                title: "FALTAN",
+                text: "EN PRECIO ESCRIBE 0",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        } else {
+            Swal.fire({
+                title: 'Confirmación',
+                text: "¿De verdad quieres inactivar esta ruta?",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#c51162',
+                cancelButtonText: 'No, Inactivar',
+                confirmButtonText: 'Si, Inactivar',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+        }
+
     });
 
     $('.ActionDeleteR').submit(function (e) {

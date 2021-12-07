@@ -6,7 +6,9 @@
 <section class="addViajeTitulo text-center">
     <h4>Califica a {{nombre}}</h4>
 </section>
-<section class="addViaje">
+<section class="addViaje text-center">
+    <p>¿Fue amable y respetuoso?</p>
+    <br>
     <form action="/links/stairsPasa/{{id}}" method="POST" class="formStair" onsubmit="return validar()">
         <div class="card">
             <div class="card-body">
@@ -29,7 +31,6 @@
         </div>
     </form>
 </section>
-
 {{else}}
 <div class="row">
     <div class="col s12 m6">

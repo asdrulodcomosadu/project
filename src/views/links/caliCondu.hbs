@@ -6,7 +6,9 @@
 <section class="addViajeTitulo text-center">
     <h4>Califica a {{nombre}}</h4>
 </section>
-<section class="addViaje">
+<section class="addViaje text-center">
+    <p>¿Te informo en sus viajes? ¿Fue amable?</p>
+    <br>
     <form action="/links/stairCondu/{{id}}" method="POST" class="formStair" onsubmit="return validar()">
         <div class="card">
             <div class="card-body">
@@ -30,10 +32,11 @@
     </form>
 </section>
 
+
 {{else}}
 <div class="row">
     <div class="col s12 m6">
-       <p>No vas a bajar a nadie</p>
+       <p>No vas a calificar a nadie, ya estas fuera de la ruta</p>
     </div>
 </div>
 {{/each}}

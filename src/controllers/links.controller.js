@@ -195,7 +195,7 @@ export const rutasCobro = async (req, res) => {
   const admi = req.user.id;
   const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
   if (admin.length > 0) {
-    const rutasCobro = await pool.query("SELECT * FROM ruta WHERE precioPagar >= 2650 AND linkCobro = 'n'");
+    const rutasCobro = await pool.query("SELECT * FROM ruta WHERE precioPagar >= 11500 AND linkCobro = 'n'");
     res.render("links/adminRutasParaCobrar", { rutasCobro });
   } else {
     res.render("profile");
@@ -260,7 +260,7 @@ export const enviarLiquidacion = async (req, res) => {
     const { linkCobro, precioPagar, ocupacion } = req.body;
     const cobro = {
       linkCobro:'n',
-      precioPagar:0,
+      precioPagar,
       ocupacion
     }
     await pool.query("UPDATE ruta set ? WHERE id = ?", [cobro, id]);
@@ -275,7 +275,7 @@ export const adeudados = async (req, res) => {
   const admi = req.user.id;
   const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
   if (admin.length > 0) {
-    const deudores = await pool.query("SELECT * FROM ruta WHERE precioPagar >= 3000 AND precioPagar < 5000 AND linkCobro != '' AND ocupacion = 'Disponible'");
+    const deudores = await pool.query("SELECT * FROM ruta WHERE precioPagar >= 12000 AND precioPagar < 17000 AND linkCobro != 'n'");
     res.render("links/adminAdeudados", { deudores });
   } else {
     res.render("profile");
@@ -892,7 +892,7 @@ export const enMarcha = async (req, res) => {
   if (dispo === "Disponible" || dispo === "Ocupada") {
     const precios = await pool.query("SELECT SUM(Precio) FROM viajes WHERE idRuta = ?", [id]);
     const pre = Object.values(precios[0])[0];
-    const porce = 10;
+    const porce = 20;
     const pocen1 = porce * pre;
     const porce2 = pocen1 / 100;
     const Precioruta = await pool.query("SELECT precioPagar FROM ruta WHERE id = ?", [id]);
