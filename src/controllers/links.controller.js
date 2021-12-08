@@ -195,7 +195,7 @@ export const rutasCobro = async (req, res) => {
   const admi = req.user.id;
   const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
   if (admin.length > 0) {
-    const rutasCobro = await pool.query("SELECT * FROM ruta WHERE precioPagar >= 11500 AND linkCobro = ''");
+    const rutasCobro = await pool.query("SELECT * FROM ruta WHERE precioPagar >= 11500 AND linkCobro is Null");
     res.render("links/adminRutasParaCobrar", { rutasCobro });
   } else {
     res.render("profile");
