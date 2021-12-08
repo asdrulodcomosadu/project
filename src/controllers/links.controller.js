@@ -195,7 +195,7 @@ export const rutasCobro = async (req, res) => {
   const admi = req.user.id;
   const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
   if (admin.length > 0) {
-    const rutasCobro = await pool.query("SELECT * FROM ruta WHERE precioPagar >= 11500 AND linkCobro = 'n'");
+    const rutasCobro = await pool.query("SELECT * FROM ruta WHERE precioPagar >= 11500 AND linkCobro = ''");
     res.render("links/adminRutasParaCobrar", { rutasCobro });
   } else {
     res.render("profile");
@@ -233,7 +233,7 @@ export const rutasLiquidaciones = async (req, res) => {
   const admi = req.user.id;
   const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
   if (admin.length > 0) {
-    const rutasliquidadas = await pool.query("SELECT * FROM ruta WHERE linkCobro != 'n'");
+    const rutasliquidadas = await pool.query("SELECT * FROM ruta WHERE linkCobro != ''");
     res.render("links/adminRutasLiquidadas", { rutasliquidadas });
   } else {
     res.render("profile");
@@ -257,9 +257,9 @@ export const enviarLiquidacion = async (req, res) => {
   const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
   if (admin.length > 0) {
     const { id } = req.params;
-    const { linkCobro, precioPagar, ocupacion } = req.body;
+    const { precioPagar, ocupacion } = req.body;
     const cobro = {
-      linkCobro:'n',
+      linkCobro:null,
       precioPagar,
       ocupacion
     }
@@ -275,7 +275,7 @@ export const adeudados = async (req, res) => {
   const admi = req.user.id;
   const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
   if (admin.length > 0) {
-    const deudores = await pool.query("SELECT * FROM ruta WHERE precioPagar >= 12000 AND precioPagar < 17000 AND linkCobro != 'n'");
+    const deudores = await pool.query("SELECT * FROM ruta WHERE precioPagar >= 12000 AND precioPagar < 17000 AND linkCobro != ''");
     res.render("links/adminAdeudados", { deudores });
   } else {
     res.render("profile");
@@ -622,7 +622,6 @@ export const createRoute = async (req, res) => {
   const idConductor = userD;
   const modelo = transito;
   const ocupacion = "Disponible";
-  const link = "n"
   const newRuta = {
     dias,
     hora,
@@ -645,7 +644,7 @@ export const createRoute = async (req, res) => {
     idConductor,
     ponderado:Math.trunc(rating),
     precioPagar:0,
-    linkCobro:link
+    linkCobro:null
   };
   await pool.query('INSERT INTO ruta set ?', [newRuta]);
   req.flash('success', 'Felicidades, Espera que te vayan llegando tus pasajeros');

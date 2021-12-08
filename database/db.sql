@@ -2,10 +2,8 @@ CREATE DATABASE comodifyBD;
 
 USE comodifyBD;
 
---
 -- Base de datos: `comodifybd`
 --
-
 -- --------------------------------------------------------
 
 --
@@ -98,10 +96,9 @@ CREATE TABLE `ruta` (
   `fechaInicial` varchar(100) NOT NULL,
   `ocupacion` varchar(100) NOT NULL,
   `precioPagar` int(100) NOT NULL,
-  `linkCobro` varchar(500) NOT NULL,
+  `linkCobro` varchar(500) DEFAULT NULL,
   `ponderado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 -- --------------------------------------------------------
 
@@ -150,6 +147,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `pass`, `email`) VALUES
 (1, 'admin0001', '$2a$10$LLYfeTKy/Hk4ukgGbRXBp.p5J5MJ.7qY53WwPmXssTL5d/9aGGKkS', 'henryasdrubalrodriguezmorales@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -261,7 +259,7 @@ ALTER TABLE `ruta`
 -- AUTO_INCREMENT de la tabla `solicitudes`
 --
 ALTER TABLE `solicitudes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -273,7 +271,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `viajes`
 --
 ALTER TABLE `viajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
