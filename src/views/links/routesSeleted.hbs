@@ -12,9 +12,9 @@
                     <h5 class="card-title">{{parada}}</h5>
                     <h6 class="card-text">{{precio}}</h6>
                     <p class="card-text">{{comentario}}</p>
-                        <form action="/links/reportCondu/{{id}}" class="formDelteRoute">
-                            <button type="submit" class="btn red darken-3">Bajarme de ruta</button>
-                        </form>
+                    <form action="/links/reportCondu/{{id}}" class="formDelteRoute">
+                        <button type="submit" class="btn red darken-3">Bajarme de ruta</button>
+                    </form>
                 </div>
                 <div id="acciones" class="text-white text-center"
                     style="background: #1a4d99; text­align: justify; font-size:3vh">{{acciones}}</div>
@@ -108,6 +108,9 @@
                 document.getElementById("loader").style.display = "block";
             }
         })
+    });
+    $('.seguir').on("click", function () {
+        document.getElementById("loader").style.display = "block";
     });
 
 

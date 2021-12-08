@@ -6,7 +6,8 @@
     <div class="alert alert-success" role="alert">
         <h4 class="alert-heading">Pasajeros</h4>
         <p>Estas son las solicitudes de pasajeros que quieren ir contigo en tu ruta, podrás observar su nombre, su
-            destino, el precio que te acepto, y su clasificación de estrellas, su maxima clasificacion es de 5 estrellas.
+            destino, el precio que te acepto, y su clasificación de estrellas, su maxima clasificacion es de 5
+            estrellas.
         </p>
         <hr>
         <p class="mb-0">Te deseamos suerte con tus nuevos pasajeros</p>
@@ -81,13 +82,13 @@
     window.onload = estreella;
     function estreella() {
         var start = document.getElementById("mult").value;
-        if(start >= 5 || start == 0){
-             document.getElementById("demo").innerHTML = "★★★★★";
-             document.getElementById("demo").style.color = "#33691e";
+        if (start >= 5 || start == 0) {
+            document.getElementById("demo").innerHTML = "★★★★★";
+            document.getElementById("demo").style.color = "#33691e";
         }
         else if (start < 5 && start >= 4) {
-           document.getElementById("demo").innerHTML = "★★★★";
-           document.getElementById("demo").style.color = "#7cb342";
+            document.getElementById("demo").innerHTML = "★★★★";
+            document.getElementById("demo").style.color = "#7cb342";
         }
         else if (start < 4 && start >= 3) {
             document.getElementById("demo").innerHTML = "★★★";
@@ -103,6 +104,6 @@
         }
     }
     $('.seguir').on("click", function () {
-            document.getElementById("loader").style.display = "block";
-        });
+        document.getElementById("loader").style.display = "block";
+    });
 </script>

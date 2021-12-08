@@ -56,10 +56,6 @@
             toolbarEnabled: true
         });
     });
-
-    
-
-
     $('.formDelte').submit(function (e) {
         e.preventDefault();
         Swal.fire({
@@ -77,8 +73,8 @@
             }
         })
     });
-
-
-
+    $('.seguir').on("click", function () {
+        document.getElementById("loader").style.display = "block";
+    });
 
 </script>
