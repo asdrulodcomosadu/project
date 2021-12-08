@@ -1,4 +1,5 @@
-<div class="container p-3">
+<div class="spinner" id="loader"></div>
+<div class="container p-2">
     <form action="/links/addPassager" method="POST" onsubmit="return validar()">
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -77,6 +78,7 @@
         <button type="submit" class="btn btn-primary btn-lg p-6">Registrarme</button>
     </form>
 </div>
+<br>
 <div class="botons">
     <div class="fixed-action-btn toolbar">
         <a class="btn-floating btn-large black">
@@ -171,6 +173,9 @@
                 showConfirmButton: false
             })
             return false;
+        }
+        else {
+            document.getElementById("loader").style.display = "block";
         }
     }
 </script>

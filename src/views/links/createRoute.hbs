@@ -1,5 +1,5 @@
 <div class="spinner" id="loader"></div>
-<div class="container p-3">
+<div class="container p-2">
     <form action="/links/addRoute" method="POST" onsubmit="return validar()">
         <h5>Crea tu ruta</h5>
         <div class="form-row">
@@ -49,7 +49,7 @@
             <div class="form-group col-md-12">
                 <label for="comentario">Especificaciones</label>
                 <textarea type="text" class="form-control" id="comentario" name="comentario"
-                    placeholder="Donde te estacionas para esperar a tus pasajeros, y caracteristicas del auto."></textarea>
+                    placeholder="Donde te estacionas para esperar a tus pasajeros, y caracteristicas del auto." rows="3"></textarea>
             </div>
 
         </div>
@@ -138,6 +138,7 @@
         <button type="submit" class="btn btn-primary blue-grey darken-3 p-6">Crear Ruta</button>
     </form>
 </div>
+<br>
 <div class="botons">
     <div class="fixed-action-btn toolbar">
         <a class="btn-floating btn-large black">

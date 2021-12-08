@@ -2,7 +2,7 @@
     window.history.replaceState({}, '', 'EdiRouteDriverConnectionSuccess');
 </script>
 <div class="spinner" id="loader"></div>
-<div class="container p-3">
+<div class="container p-2">
     <form action="/links/editRouteCreated/{{datosRuta.id}}" method="POST" onsubmit="return validar()">
         <h5>Edita tu ruta</h5>
         <div class="form-row">
@@ -56,7 +56,7 @@
                 <label for="comentario">Especificaciones</label>
                 <textarea type="text" class="form-control" id="comentario" name="comentario"
                     placeholder="Donde te parqueas para esperar a tus pasajeros, caracteristicas del auto."
-                    value="{{datosRuta.comentario}}">{{datosRuta.comentario}}</textarea>
+                    value="{{datosRuta.comentario}}" rows="3">{{datosRuta.comentario}}</textarea>
             </div>
 
         </div>
@@ -151,6 +151,7 @@
         <button type="submit" class="btn red darken-3">Eliminar Ruta</button>
     </form>
 </div>
+<br>
 <div class="botons">
     <div class="fixed-action-btn toolbar">
         <a class="btn-floating btn-large black">
