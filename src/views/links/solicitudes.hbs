@@ -23,12 +23,12 @@
                     <h5 class="card-title">{{parada}}</h5>
                     <p class="datosCards" style="font-size: 2.5vh;">{{precio}}</p>
                     <div class="row">
-                        <div class="col">
+                        <div class="col p-2">
                             <form action="/links/ViajeSelectNo/{{id}}">
                                 <button type="submit" class="btn red darken-4 seguir">negar</button>
                             </form>
                         </div>
-                        <div class="col">
+                        <div class="col p-2">
                             <form action="/links/viajeSelect/{{idRuta}}" method="POST">
                                 <input name="idS" class="solici" value="{{id}}">
                                 <input name="parada" class="solici" value="{{parada}}">

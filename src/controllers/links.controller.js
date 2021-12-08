@@ -857,7 +857,7 @@ export const enCamino = async (req, res) => {
     await pool.query("UPDATE viajes set acciones = ? WHERE idRuta = ?", [accion, id]);
     req.flash('success', 'Estas en camino al lugar de encuentro, Suerte');
   } else if (dispo === "Adeudada" || dispo === "Inactiva") {
-    req.flash('message', 'Estas en deuda paga tu liquidación ', deuda, 'para habilitarla');
+    req.flash('message', 'Estas en deuda paga tu liquidación 12.000 para habilitarla');
   } else {
     req.flash('message', 'Tu ruta esta Denunciada, tendrás que esperar 3 días para seguir con tu servicio.');
   }
@@ -875,7 +875,7 @@ export const enEspera = async (req, res) => {
     await pool.query("UPDATE viajes set acciones = ? WHERE idRuta = ?", [accion, id]);
     req.flash('success', 'Estas en espera de pasajeros, suerte');
   } else if (dispo === "Adeudada" || dispo === "Inactiva") {
-    req.flash('message', 'Estas en deuda paga tu liquidación ', deuda, 'para habilitarla');
+    req.flash('message', 'Estas en deuda paga tu liquidación 12.000 para habilitarla');
   } else {
     req.flash('message', 'Tu ruta esta Denunciada, tendrás que esperar 3 días para seguir con tu servicio.');
   }
@@ -904,7 +904,7 @@ export const enMarcha = async (req, res) => {
     await pool.query("UPDATE viajes set acciones = ? WHERE idRuta = ?", [accion, id]);
     req.flash('success', 'En marcha hacia los destinos se te sumaron ', [porce2], "pesos a tu cuenta");
   } else if (dispo === "Adeudada" || dispo === "Inactiva") {
-    req.flash('message', 'Estas en deuda paga tu liquidación ', deuda, 'para habilitarla');
+    req.flash('message', 'Estas en deuda paga tu liquidación 12.000 para habilitarla');
   } else {
     req.flash('message', 'Tu ruta esta Denunciada, tendrás que esperar 3 días para seguir con tu servicio.');
   }
@@ -922,7 +922,7 @@ export const finalRuta = async (req, res) => {
     await pool.query("UPDATE viajes set acciones = ? WHERE idRuta = ?", [accion, id]);
     req.flash('message', 'Finalizaste la ruta, hasta pronto');
   } else if (dispo === "Adeudada" || dispo === "Inactiva") {
-    req.flash('message', 'Estas en deuda paga tu liquidación ', deuda, 'para habilitarla');
+    req.flash('message', 'Estas en deuda paga tu liquidación 12.000 para habilitarla');
   } else {
     req.flash('message', 'Tu ruta esta Denunciada, tendrás que esperar 3 días para seguir con tu servicio.');
   }
@@ -940,7 +940,7 @@ export const indisponibilidad = async (req, res) => {
     await pool.query("UPDATE viajes set acciones = ? WHERE idRuta = ?", [accion, id]);
     req.flash('message', 'Será otro día. ya le informamos a tus pasajeros');
   } else if (dispo === "Adeudada" || dispo === "Inactiva") {
-    req.flash('message', 'Estas en deuda paga tu liquidación ', deuda, 'para habilitarla');
+    req.flash('message', 'Estas en deuda paga tu liquidación 12.000 para habilitarla');
   } else {
     req.flash('message', 'Tu ruta esta Denunciada, tendrás que esperar 3 días para seguir con tu servicio.');
   }

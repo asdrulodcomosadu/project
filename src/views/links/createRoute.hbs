@@ -1,5 +1,5 @@
 <div class="spinner" id="loader"></div>
-<div class="container p-2">
+<div class="container p-4">
     <form action="/links/addRoute" method="POST" onsubmit="return validar()">
         <h5>Crea tu ruta</h5>
         <div class="form-row">
@@ -9,7 +9,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="hora">Hora</label>
-                <input type="time" class="form-control" id="hora" name="hora" placeholder="Hora de salida">
+                <input type="text" class="form-control" id="hora" name="hora" placeholder="Hora de salida">
             </div>
         </div>
         <div class="form-row">
@@ -135,7 +135,7 @@
                     </div>
                 </div>
             </div>
-        <button type="submit" class="btn btn-primary blue-grey darken-3">Crear Ruta</button>
+        <button type="submit" class="btn btn-primary blue-grey darken-3 p-6">Crear Ruta</button>
     </form>
 </div>
 <div class="botons">
