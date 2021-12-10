@@ -399,7 +399,7 @@ export const badDrivers = async (req, res) => {
   const admi = req.user.id;
   const admin = await pool.query("SELECT id FROM admin WHERE idUser = ?", [admi]);
   if (admin.length > 0) {
-    const driversB = await pool.query("SELECT * FROM conductores WHERE votantes >= 10 AND disponible != 'Mal servicio'");
+    const driversB = await pool.query("SELECT * FROM conductores WHERE votantes >= 8 AND disponible != 'Mal servicio'");
     res.render("links/adminBadDrivers", { driversB });
   } else {
     res.render("profile");
