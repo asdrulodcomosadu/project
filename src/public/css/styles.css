@@ -277,6 +277,18 @@ main .sobre-nosotros{
   transform: scale(1);
 }
 
+#soatF{
+  display: none;
+}
+#antecedentesF{
+  display: none;
+}
+#vehiculoF{
+  display: none;
+}
+#licenciaF{
+  display: none;
+}
 /* Clients */
 
 .cards{

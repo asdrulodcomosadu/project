@@ -891,7 +891,7 @@ export const enMarcha = async (req, res) => {
   if (dispo === "Disponible" || dispo === "Ocupada") {
     const precios = await pool.query("SELECT SUM(Precio) FROM viajes WHERE idRuta = ?", [id]);
     const pre = Object.values(precios[0])[0];
-    const porce = 20;
+    const porce = 10;
     const pocen1 = porce * pre;
     const porce2 = pocen1 / 100;
     const Precioruta = await pool.query("SELECT precioPagar FROM ruta WHERE id = ?", [id]);

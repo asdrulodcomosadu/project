@@ -69,16 +69,42 @@ const upload = multer ({
   storage: storage
 })
 
-app.post("/files", upload.array('licencia',4), (req, res)=>{
-  const files = req.files
-  if (!files) {
+app.post('/files', upload.single('licencia'), (req, res, next) => {
+  const file = req.file
+  if (!file) {
+    const error = new Error('Verifica tu conexión a Internet, please choose files')
+    error.httpStatusCode = 400
+    return next(error)
+  }
+})
+
+app.post('/soat', upload.single('soat'), (req, res, next) => {
+  const file = req.file
+  if (!file) {
+    const error = new Error('Verifica tu conexión a Internet, please choose files')
+    error.httpStatusCode = 400
+    return next(error)
+  }
+})
+
+app.post('/antecedentes', upload.single('antecedentes'), (req, res, next) => {
+  const file = req.file
+  if (!file) {
+    const error = new Error('Verifica tu conexión a Internet, please choose files')
+    error.httpStatusCode = 400
+    return next(error)
+  }
+})
+
+app.post('/vehiculo', upload.single('vehiculo'), (req, res, next) => {
+  const file = req.file
+  if (!file) {
     const error = new Error('Verifica tu conexión a Internet, please choose files')
     error.httpStatusCode = 400
     return next(error)
   }
   res.render('uploadSuccessFull')
 })
-
 
 
 // Routes
