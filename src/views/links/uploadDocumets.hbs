@@ -1,3 +1,4 @@
+<div class="spinner" id="loader"></div>
 {{#each identi}}
 <div class="row" id="intro">
     <div class="col s12 m5">
@@ -50,58 +51,9 @@
             </form>
         </div>
         <div class="card-footer text-muted">
-            Sigue tu SOAT, debe ser llamado asi: Soat{{identificacion}}
+             <img src="../img/licencia.png" alt="Descripción de la imagen" width="600" height="300">
         </div>
     </div>
-
-    <div class="card text-center" id="soatF">
-        <div class="card-header">
-          SOAT
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Soat{{identificacion}}</h5>
-            <form action="/soat" method="post" enctype="multipart/form-data" onsubmit="return validarSo()">
-                <input type="file" name="soat" id="soat" accept="image/png,image/jpeg"><br><br>
-                <input type="submit" value="subir" class="btn btn-primary btn-lg text-white" id="Bsoat">
-            </form>
-        </div>
-        <div class="card-footer text-muted">
-            Sigue tus antecedentes, debe ser llamado así: Antecedentes{{identificacion}}
-        </div>
-    </div>
-
-    <div class="card text-center" id="antecedentesF">
-        <div class="card-header">
-            Antecedentes
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Antecedentes{{identificacion}}</h5>
-            <form action="/antecedentes" method="post" enctype="multipart/form-data" onsubmit="return validarAn()">
-                <input type="file" name="antecedentes" id="antecedentes" accept="image/png,image/jpeg"><br><br>
-                <input type="submit" value="Subir" class="btn btn-primary btn-lg text-white" id="Bantecedentes">
-            </form>
-        </div>
-        <div class="card-footer text-muted">
-            Sigue la foto de tú vehículo, debe ser llamado así: Vehiculo{{identificacion}}
-        </div>
-    </div>
-
-    <div class="card text-center" id="vehiculoF">
-        <div class="card-header">
-            Vehículo
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Vehiculo{{identificacion}}</h5>
-            <form action="/vehiculo" method="post" enctype="multipart/form-data" onsubmit="return validarVe()">
-                <input type="file" name="vehiculo" id="vehiculo" accept="image/png,image/jpeg"><br><br>
-                <input type="submit" value="Subir" class="btn btn-primary btn-lg text-white" id="Bvehiculo">
-            </form>
-        </div>
-        <div class="card-footer text-muted">
-            Listo, estás enviando tus documentos
-        </div>
-    </div>
-
     {{else}}
     <div class="card">
         <div class="card-body grey darken-2 text-white text-center">
@@ -128,53 +80,8 @@
             })
             return false;
         } else {
-            document.getElementById("licenciaF").style.display = "none";
-            document.getElementById("soatF").style.display = "block";
+           document.getElementById("loader").style.display = "block";
         }
     }
 
-    function validarSo() {
-        var documents = $("#soat")[0].files.length;
-        if (documents === 0) {
-            swal.fire({
-                title: "Escoge tu SOAT",
-                text: "No tienes ningún archivo seleccionado",
-                timer: 3000,
-                showConfirmButton: false
-            })
-            return false;
-        } else {
-            document.getElementById("soatF").style.display = "none";
-            document.getElementById("antecedentesF").style.display = "block";
-        }
-    }
-
-    function validarAn() {
-        var documents = $("#antecedentes")[0].files.length;
-        if (documents === 0) {
-            swal.fire({
-                title: "Escoge tus Antecedentes",
-                text: "No tienes ningún archivo seleccionado",
-                timer: 3000,
-                showConfirmButton: false
-            })
-            return false;
-        } else {
-            document.getElementById("antecedentesF").style.display = "none";
-            document.getElementById("vehiculoF").style.display = "block";
-        }
-    }
-    
-    function validarVe() {
-        var documents = $("#vehiculo")[0].files.length;
-        if (documents === 0) {
-            swal.fire({
-                title: "Escoge la foto de tu vehículo",
-                text: "No tienes ningún archivo seleccionado",
-                timer: 3000,
-                showConfirmButton: false
-            })
-            return false;
-        }
-    }
 </script>

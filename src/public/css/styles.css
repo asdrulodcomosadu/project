@@ -277,15 +277,18 @@ main .sobre-nosotros{
   transform: scale(1);
 }
 
-#soatF{
-  display: none;
+.img{
+  left: 0;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  bottom: 0; 
+
+
 }
-#antecedentesF{
-  display: none;
-}
-#vehiculoF{
-  display: none;
-}
+
+
 #licenciaF{
   display: none;
 }

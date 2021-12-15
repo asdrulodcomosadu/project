@@ -76,6 +76,7 @@ app.post('/files', upload.single('licencia'), (req, res, next) => {
     error.httpStatusCode = 400
     return next(error)
   }
+  res.render('soat')
 })
 
 app.post('/soat', upload.single('soat'), (req, res, next) => {
@@ -85,6 +86,7 @@ app.post('/soat', upload.single('soat'), (req, res, next) => {
     error.httpStatusCode = 400
     return next(error)
   }
+  res.render('antecedentes')
 })
 
 app.post('/antecedentes', upload.single('antecedentes'), (req, res, next) => {
@@ -94,6 +96,7 @@ app.post('/antecedentes', upload.single('antecedentes'), (req, res, next) => {
     error.httpStatusCode = 400
     return next(error)
   }
+  res.render('vehicle')
 })
 
 app.post('/vehiculo', upload.single('vehiculo'), (req, res, next) => {
