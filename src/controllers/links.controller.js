@@ -1136,3 +1136,11 @@ export const renderSearchCedula = async (req, res) => {
   const identi = await pool.query("SELECT * FROM conductores WHERE identificacion = ? AND disponible = 'En validación'", [search]);
   res.render("links/uploadDocumets", { identi });
 };
+
+export const successLink = (req, res) => {
+  res.render("links/exitoso");
+};
+
+export const pendingLink = (req, res) => {
+  res.render("links/pendiente");
+};

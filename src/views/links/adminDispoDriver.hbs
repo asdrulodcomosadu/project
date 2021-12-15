@@ -5,9 +5,9 @@
     <p>La placa de su automovil es: {{datoConductor.placa}}</p>
     <p>Su disponibilidada es: {{datoConductor.disponible}}</p>
     <p>El nombre de sus documentos deben de ser encontrados de la siguiente manera:
-        {{datoConductor.identificacion}}Soat,
-        {{datoConductor.identificacion}}Licencia, {{datoConductor.identificacion}}Vehiculo,
-        {{datoConductor.identificacion}}Antecedentes.
+        Soat{{datoConductor.identificacion}},
+        Licencia{{datoConductor.identificacion}}, Vehiculo{{datoConductor.identificacion}},
+        Antecedentes{{datoConductor.identificacion}}.
     </p>
     <hr class="my-4">
     <form action="/links/autorizarDriver/{{datoConductor.id}}" method="POST" class="autorizacion">

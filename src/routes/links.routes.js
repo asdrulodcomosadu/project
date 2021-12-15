@@ -75,7 +75,6 @@ import {
   renderRoutesSelected,
   renderPassager,
   deleteViaje,
-  denunciaDefinitiva,
   ValidationRenderRoutesSelected,
   enCamino,
   enEspera,
@@ -92,8 +91,9 @@ import {
   stairsPasa,
   caliCondu,
   stairsCondu,
-  renderSearchCedula
-
+  renderSearchCedula,
+  successLink,
+  pendingLink,
 
 } from "../controllers/links.controller";
 
@@ -284,6 +284,12 @@ router.post("/stairCondu/:id", stairsCondu);
 
 //Busqueda de rutas
 router.post("/bCedula", renderSearchCedula);
+
+//Busqueda de rutas
+router.get("/successLink", successLink);
+
+//Busqueda de rutas
+router.get("/pendingLink", pendingLink);
 
 
 
