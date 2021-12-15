@@ -1144,3 +1144,7 @@ export const successLink = (req, res) => {
 export const pendingLink = (req, res) => {
   res.render("links/pendiente");
 };
+
+export const unsuccessfull = (req, res) => {
+  res.render("links/unSuccessfull");
+};

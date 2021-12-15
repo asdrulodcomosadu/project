@@ -94,6 +94,7 @@ import {
   renderSearchCedula,
   successLink,
   pendingLink,
+  unsuccessfull,
 
 } from "../controllers/links.controller";
 
@@ -290,6 +291,9 @@ router.get("/successLink", successLink);
 
 //Busqueda de rutas
 router.get("/pendingLink", pendingLink);
+
+//Busqueda de rutas
+router.get("/unsuccessfull", unsuccessfull);
 
 
 
