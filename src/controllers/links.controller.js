@@ -480,7 +480,7 @@ export const addDriver = async (req, res) => {
     votantes:1,
   };
   await pool.query('INSERT INTO conductores set ?', [newPassager]);
-  req.flash('success', 'Felicidades, has creado tu perfil como conductor, ahora puedes subir tus documentos desde un computador ingresando a www.comodify.digital, en la sección Conductor.');
+  req.flash('success', 'Felicidades, has creado tu perfil como conductor, ahora Si puedes subir tus documentos desde un computador ingresando a www.comodify.digital, en la sección Conductor.');
   res.redirect("datesProfileDriver");
 };
 // Edición de conductor
