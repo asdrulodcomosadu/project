@@ -104,8 +104,8 @@ label{
 
 header {
   width: 100%;
-  height: 96vh;
-  background: #bc4e9c;
+  height: 95vh;
+  background: #7db5ff;
   /* fallback for old browsers */
   background: url(../img/portada.jpg);
   /* Chrome 10-25, Safari 5.1-6 */
@@ -932,6 +932,10 @@ footer{
 }
 
 .bobo{
+  display: none;
+}
+
+.letrasHeader{
   display: none;
 }
 
