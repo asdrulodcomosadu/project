@@ -25,7 +25,8 @@
     <form action="/links/addSolicitud/{{ruta.id}}" method="POST" onsubmit="return validar()">
         <div class="card">
             <div class="card-header" style="font-size: 4.5vh;">
-                <p id="demo" class="center-block"></p>
+                <p style="font-size: 2.2vh; color:rgb(136, 136, 136)">Clasificación del conductor</p>
+                <p id="demo" class="center-block" style="margin-top: 0%;"></p>
             </div>
             <div class="card-body">
                 <div class="form-group col-md-8">
@@ -38,7 +39,7 @@
                         <option value="{{ruta.parada4}}">{{ruta.parada4}}</option>
                     </select>
                 </div>
-                <textarea type="text" class="form-control precio" id="precio" name="precio" rows="1" readonly></textarea><br><br>
+                <textarea type="text" class="form-control precio" id="precio" name="precio" rows="1" readonly></textarea><br>
                
                 <button type="submit" class="btn blue darken-3">Me sirve</button>
             </div>
